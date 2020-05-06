@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/signup/' , accounts_view.SignUpView.as_view() , name = 'signup'),
     path('accounts/signup/student/',accounts_view.StudentSignUpView.as_view() , name = 'student_signup'),
     path('accounts/signup/teacher/',accounts_view.TeacherSignUpView.as_view() , name = 'teacher_signup'),
+    path('api/v1/' , include('api.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL , document_root = settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)
