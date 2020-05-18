@@ -1,14 +1,13 @@
-from django.urls import include , path
-
+from django.urls import path,include
+from rest_framework import routers
 from . import views
 
-urlpatterns = [
-    # list if url patterns for students under namespace students
-    path('students/',include(([
-        path('projects_applied/' , views.projects_applied , name="projects_applied"),
-    ] , 'projects'),namespace = 'students')),
-    # list of all url patterns for teachrs under namespace teacher
-    path('teachers/' , include(([
-        path('projects_posted/' , views.projects_posted, name="projects_posted"),
-    ] , 'projects') ,namespace = 'teachers')),
+router = routers.DefaultRouter()
+router.register(r'applications', views.ApplicationViewSet,basename="applications")
+router.register(r'projects', views.ProjectViewSet,basename="projects")
+
+urlpatterns=[
+
+    path('api/',include(router.urls)),
+    path('api-auth/',include('rest_framework.urls', namespace='rest_framework')),
 ]

@@ -1,11 +1,28 @@
 from django.db import models
-from accounts.models import User
+from accounts.models import Professor
 
-
-# Create your models here.
 class Project(models.Model):
-    name = models.CharField(max_length = 100)
-    short_description = models.CharField(max_length=200)
-    detail = models.TextField()
-    posted_by = models.ForeignKey(User , on_delete=models.CASCADE,related_name= "posted_by")
-    applicants = models.ManyToManyField(User,related_name= "applicants")
+
+    title=models.CharField(max_length=200)
+    description=models.CharField(max_length=1000)
+    tech_used=models.CharField(max_length=200)
+    criterion=models.CharField(max_length=200, default="None")
+    professor=models.ForeignKey('accounts.Professor', on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.title
+
+class Application(models.Model):
+
+    name=models.CharField(max_length=200)
+    enrollment_id=models.CharField(max_length=20)
+    email_id=models.EmailField(max_length=200)
+    department=models.CharField(max_length=60)
+    cgpa=models.CharField(max_length=10)
+    statement_of_purpose=models.CharField(max_length=1000)
+    project=models.ForeignKey(Project, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.name
