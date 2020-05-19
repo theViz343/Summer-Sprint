@@ -10,6 +10,7 @@ class Applicationform extends React.Component {
     this.state={
 
       project_id:"",
+      student_id:"",
       name:"",
       enrollment_id:"",
       department:"",
@@ -37,6 +38,7 @@ class Applicationform extends React.Component {
             body:JSON.stringify( {
 
                       "project_id": this.props.match.params.project_id,
+                      "student_id": localStorage.getItem('user_id'),
                       "name":this.state.name,
                       "enrollment_id":this.state.enrollment_id,
                       "department":this.state.department,
