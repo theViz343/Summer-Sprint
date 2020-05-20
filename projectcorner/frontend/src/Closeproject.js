@@ -7,6 +7,7 @@ class Closeproject extends React.Component {
 
     this.state = {
       done:false,
+      status:"",
     }
   }
 
@@ -27,8 +28,8 @@ class Closeproject extends React.Component {
         .then(json => {
           this.setState({
               done:true,
+              status:this.props.match.params.status,
           });
-
         }
         )
 
@@ -41,14 +42,14 @@ class Closeproject extends React.Component {
 
           if(this.state.done)
           {
-                if(this.props.match.params.status)
+                if(this.props.match.params.status == "true")
                 {
                   return(<div class="alert alert-success">Project is Now open</div>)
                 }
-                else {
-
+                else
+                {
                    return(<div class="alert alert-warning">Project is Now Closed</div>)
-                 }
+                }
 
           }
           else{
