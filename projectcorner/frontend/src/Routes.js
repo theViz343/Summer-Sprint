@@ -10,6 +10,8 @@ import ContentsApplicants from './ContentsApplicants'
 import Applicationform from './Applicationform'
 import Addprojectform from './Addprojectform'
 import Logout from './Logout'
+import Closeproject from './Closeproject'
+import Deleteproject from './Deleteproject'
 class Routes extends Component {
     render() {
         return (
@@ -23,6 +25,8 @@ class Routes extends Component {
                         <Route exact path={"/ContentsProfessor/:professor_id"} component={ContentsProfessor}/>
                         <Route exact path={"/ContentsApplicants/:project_id"} name="ContentsApplicants" component={ContentsApplicants}/>
                         <Route exact path={"/Applicationform/:project_id"} component={Applicationform}/>
+                        <Route exact path={"/Closeproject/:project_id/:status"} component={Closeproject}/>
+                        <Route exact path={"/Deleteproject/:project_id"} component={Deleteproject}/>
                         <Route exact path={"/Addprojectform/"}  component={Addprojectform}/>
                         <Route exact path={"/Logout/"} component={Logout}/>
 

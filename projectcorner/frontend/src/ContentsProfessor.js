@@ -50,9 +50,12 @@ class ContentsProfessor extends React.Component {
                 <h4 class="card-title">{item.title}</h4>
                 <p class="card-text">{item.description}</p>
                 <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
+                <p class="card-text"><b>is_open: </b>{item.is_open}</p>
                 <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
                 <br/>
                 <Link to={`/ContentsApplicants/${item.id}`} class="btn btn-primary">See Applicants</Link>
+                <Link to={`/Deleteproject/${item.id}`} class="btn btn-danger">Delete</Link>
+                <Link to={`/Closeproject/${item.id}/${!item.is_open}`} class="btn btn-warning">{item.is_open?<span>Close</span>:<span>Open</span>}</Link>
 
               </div>
 

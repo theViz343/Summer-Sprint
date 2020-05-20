@@ -12,7 +12,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     professor = ProfessorSerializer(read_only=True)
     professor_id = serializers.PrimaryKeyRelatedField(queryset = Professor.objects.all(), source='professor', write_only=True)
 
-
     class Meta:
         model = Project
         fields= '__all__'
