@@ -1,5 +1,5 @@
 import React from 'react'
-import './Loginform.css'
+import '../css/Loginform.css'
 import Navigationbar from './Navigationbar'
 
 
@@ -61,6 +61,16 @@ class Applicationform extends React.Component {
     }
 
     render() {
+
+
+
+        const already_applied = () =>{
+          var project_id = this.props.match.params.project_id;
+          var student_id = localStorage.getItem('user_id');
+
+        }
+
+
 
         const applied_alert = () =>{
 

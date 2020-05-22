@@ -1,9 +1,10 @@
 import React from 'react'
-import './Contents.css'
+import '../css/Contents.css'
 import Header from './Header'
 import Routes from './Routes'
 import {Link} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
+import {Redirect} from 'react-router-dom';
 
 class ContentsProfessor extends React.Component {
   constructor(props) {
@@ -39,6 +40,21 @@ class ContentsProfessor extends React.Component {
    }
 
    render(){
+
+     if( localStorage.getItem( 'token') == null){
+        return (
+          <Redirect
+            to={{
+              pathname : '/',
+              state :  {
+                error : "You need to login first"
+              }
+            }}
+            />
+        )
+     }
+
+
      return(
        <div>
        <Navigationbar />

@@ -25,7 +25,7 @@ class Application(models.Model):
     statement_of_purpose=models.CharField(max_length=1000)
     student = models.ForeignKey('accounts.Student', on_delete=models.CASCADE , default=None)
     project=models.ForeignKey(Project, on_delete=models.CASCADE)
-
+    is_selected = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

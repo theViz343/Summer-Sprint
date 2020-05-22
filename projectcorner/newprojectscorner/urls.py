@@ -23,7 +23,7 @@ urlpatterns = [
     path('auth-token/', obtain_jwt_token),
     path('projects/',include('projects.urls')),
     path('accounts/',include('accounts.urls')),
-
+    
 
 
 ]

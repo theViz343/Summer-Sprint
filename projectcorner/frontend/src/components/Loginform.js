@@ -1,5 +1,5 @@
 import React from 'react'
-import './Loginform.css';
+import '../css/Loginform.css';
 import {Redirect} from 'react-router-dom'
 import Routes from './Routes'
 import Navigationbar from './Navigationbar'
@@ -23,6 +23,14 @@ class Loginform extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if(this.props.location.state){
+      this.setState({
+        error : this.props.location.state.error
+      })
+    }
   }
 
   handleChange(event) {
@@ -93,6 +101,8 @@ class Loginform extends React.Component {
 
   render() {
 
+
+
     const error_alert =()=>{
 
         if(this.state.error)
@@ -110,9 +120,8 @@ class Loginform extends React.Component {
         if(this.state.is_student)
         {
           return(<Redirect to={{
-                  pathname: '/Contents/',
-                  state: { username: this.state.username,
-                           password: this.state.password
+                  pathname: '/applied_projects/',
+                  state: { user_id:this.state.user_id
                         }
               }}
           />)

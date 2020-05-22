@@ -1,5 +1,5 @@
 import React from 'react'
-import './Footer.css'
+import '../css/Footer.css'
 
 class Footer extends React.Component {
 
@@ -15,7 +15,7 @@ class Footer extends React.Component {
   render(){
 
     return(
-      <div id="footer">
+      <div id="footer" className="footer">
         <h4>{this.state.content}</h4>
         <h5>Contact</h5>
         <p>email:{this.state.email}</p>
