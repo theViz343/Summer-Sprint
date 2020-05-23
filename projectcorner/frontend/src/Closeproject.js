@@ -65,8 +65,6 @@ class Closeproject extends React.Component {
   }
 
 
-
-
 }
 
 

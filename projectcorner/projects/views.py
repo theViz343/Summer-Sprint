@@ -3,8 +3,6 @@ from rest_framework import viewsets
 from .models import Application,Project
 from .serializers import ApplicationSerializer,ProjectSerializer
 
-
-
 class ApplicationViewSet(viewsets.ModelViewSet):
 
     serializer_class = ApplicationSerializer
