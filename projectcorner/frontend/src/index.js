@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import Contents from './Contents';
-import Header from './Header';
-import Navigationbar from './Navigationbar';
-import Footer from './Footer';
-import App from './App';
-import Loginform from './Loginform'
+import './css/index.css';
+import Contents from './components/Contents';
+import Header from './components/Header';
+import Navigationbar from './components/Navigationbar';
+import Footer from './components/Footer';
+import App from './components/App';
+import Loginform from './components/Loginform'
 import * as serviceWorker from './serviceWorker';
-import Routes from './Routes'
+import Routes from './components/Routes'
 import {BrowserRouter} from 'react-router-dom'
 
 

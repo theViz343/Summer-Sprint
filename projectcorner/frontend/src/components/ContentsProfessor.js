@@ -1,5 +1,5 @@
 import React from 'react'
-import './Contents.css'
+import '../css/Contents.css'
 import Header from './Header'
 import Routes from './Routes'
 import {Link , Redirect} from 'react-router-dom'

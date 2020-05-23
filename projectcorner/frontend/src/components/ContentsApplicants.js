@@ -1,16 +1,15 @@
 import React from 'react'
-import './Contents.css'
+import '../css/Contents.css'
 import Header from './Header'
-import {Link} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
-import {Redirect} from 'react-router-dom';
-
-class Contents extends React.Component {
+import {Redirect}  from 'react-router-dom';
+class ContentsApplicants extends React.Component {
   constructor(props) {
     super(props)
     this.state={
       isLoaded : "a",
-      items :[]
+      items :[],
+      id : "2"
     }
 
   }
@@ -21,10 +20,10 @@ class Contents extends React.Component {
 
    fetchdata(){
 
-     // let url="http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=f0597c3b2f81427ca2c47ae854474efb"
-     let url2 ="http://127.0.0.1:8000/projects/api/projects/"
-     fetch(url2,{headers: {
+     let url2 = "http://127.0.0.1:8000/projects/api/applications/?project_id="+this.props.match.params.project_id
+     fetch(url2, {headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
+
         }})
        .then(res => res.json())
        .then(
@@ -34,9 +33,7 @@ class Contents extends React.Component {
              items: result
            })
          },
-       ).catch(e=>{
-         
-       })
+       )
    }
 
    render(){
@@ -55,29 +52,25 @@ class Contents extends React.Component {
      }
 
 
-
      return(
        <div>
         <Navigationbar />
        <div class="container">
-       <Header content="project" />
+       <Header content="Applicants" />
        {this.state.items.map(item =>(
            <div class="card" >
               <div class="card-body">
-                <h4 class="card-title">{item.title}</h4>
-                <p class="card-text">{item.description}</p>
-                <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
-                <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
+                <h4 class="card-title">{item.name}</h4>
+                <p class="card-text">{item.enrollment_id}</p>
+                <p class="card-text"><b>Department: </b>{item.department}</p>
+                <div class="card-text"><b>Grade: </b>{item.cgpa}</div>
                 <br/>
-                  {
-                    item.is_open?<Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>:
-                    <button class="btn btn-warning">Project is Closed</button>
-                  }
+                <a href="#" class="btn btn-primary">Back</a>
               </div>
             </div>
        ))}
 
-     </div>
+       </div>
      </div>
      )
    }
@@ -85,4 +78,4 @@ class Contents extends React.Component {
 }
 
 
-export default Contents
+export default ContentsApplicants
