@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Redirect} from 'react-router-dom';
 
 class Closeproject extends React.Component {
   constructor(props) {
@@ -37,6 +37,21 @@ class Closeproject extends React.Component {
   }
 
   render(){
+
+
+    //redirect to login if not logged in
+    if( localStorage.getItem( 'token') == null){
+       return (
+         <Redirect
+           to={{
+             pathname : '/',
+             state :  {
+               error : "You need to login first"
+             }
+           }}
+           />
+       )
+    }
 
       const error_alert =()=>{
 

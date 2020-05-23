@@ -1,7 +1,7 @@
 import React from 'react'
 import './Loginform.css'
 import Navigationbar from './Navigationbar'
-
+import {Redirect} from 'react-router-dom';
 
 class Applicationform extends React.Component {
 
@@ -61,6 +61,19 @@ class Applicationform extends React.Component {
     }
 
     render() {
+
+      if( localStorage.getItem( 'token') == null){
+         return (
+           <Redirect
+             to={{
+               pathname : '/',
+               state :  {
+                 error : "You need to login first"
+               }
+             }}
+             />
+         )
+      }
 
         const applied_alert = () =>{
 

@@ -74,7 +74,6 @@ class Navlinks extends React.Component{
               <li class="nav-item"><Link to={"/Contents/"} class="nav-link">Contents</Link></li>
               <li class="nav-item"><Link to={"/"} class="nav-link">Login</Link></li>
               <li class="nav-item"><Link to={"/ContentsProfessor/:professor_id"} class="nav-link">About</Link></li>
-              <li class="nav-item"><Link to={"/Applicationform/"} class="nav-link">Apply</Link></li>
               <li class="nav-item"><Link to={"/Addprojectform/"} class="nav-link">Add</Link></li>
               <li class="nav-item"><Link to={`/Myapplications/${localStorage.getItem('user_id')}`} class="nav-link">Add</Link></li>
             </ul>

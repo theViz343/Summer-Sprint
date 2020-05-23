@@ -25,6 +25,14 @@ class Loginform extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if(this.props.location.state){
+      this.setState({
+        error : this.props.location.state.error
+      })
+    }
+  }
+
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
@@ -110,9 +118,9 @@ class Loginform extends React.Component {
         if(this.state.is_student)
         {
           return(<Redirect to={{
-                  pathname: '/Contents/',
-                  state: { username: this.state.username,
-                           password: this.state.password
+                  pathname: '/applied_projects/',
+                  state: { user_id : this.state.user_id
+
                         }
               }}
           />)

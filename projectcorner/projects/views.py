@@ -14,10 +14,10 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         student_id = self.request.query_params.get('student_id')
 
         if project_id is not None:
-            queryset = Application.objects.filter(project__pk=project_id)
+            queryset = queryset.filter(project__pk=project_id)
 
         if student_id is not None:
-            queryset = Application.objects.filter(student__pk=student_id)
+            queryset = queryset.filter(student__pk=student_id)
 
         return queryset
 
@@ -31,6 +31,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
         professor_id = self.request.query_params.get('professor_id')
 
         if professor_id is not None:
-            queryset = Project.objects.filter(professor__pk=professor_id)
+            queryset = queryset.filter(professor__pk=professor_id)
 
         return queryset

@@ -3,7 +3,7 @@ import './Contents.css'
 import Header from './Header'
 import {Link} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
-
+import {Redirect} from 'react-router-dom';
 
 class Contents extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Contents extends React.Component {
 
    fetchdata(){
 
-     let url="http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=f0597c3b2f81427ca2c47ae854474efb"
+     // let url="http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=f0597c3b2f81427ca2c47ae854474efb"
      let url2 ="http://127.0.0.1:8000/projects/api/projects/"
      fetch(url2,{headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
@@ -34,10 +34,25 @@ class Contents extends React.Component {
              items: result
            })
          },
-       )
+       ).catch(e=>{
+         
+       })
    }
 
    render(){
+
+     if( localStorage.getItem( 'token') == null){
+        return (
+          <Redirect
+            to={{
+              pathname : '/',
+              state :  {
+                error : "You need to login first"
+              }
+            }}
+            />
+        )
+     }
 
 
 

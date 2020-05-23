@@ -13,14 +13,15 @@ import Logout from './Logout'
 import Closeproject from './Closeproject'
 import Deleteproject from './Deleteproject'
 import Myapplications from './Myapplications'
+import AppliedProjects from './AppliedProjects'
 class Routes extends Component {
     render() {
         return (
             <div className="site">
 
                     <Switch>
-                        <Route exact path={"/"} component={Loginform}/>
-                        <Route exact path={"/Contents/"} component={Contents}/>
+                        <Route exact path={"/"} render={(props)=><Loginform {...props}/>}/>
+                        <Route exact path={"/Contents/"} render={(props)=><Contents {...props}/>}/>
                         <Route exact path={"/Header/"} component={Header}/>
                         <Route exact path={"/Footer/"} component={Footer}/>
                         <Route exact path={"/ContentsProfessor/:professor_id"} component={ContentsProfessor}/>
@@ -31,6 +32,7 @@ class Routes extends Component {
                         <Route exact path={"/Myapplications/:student_id"} component={Myapplications}/>
                         <Route exact path={"/Addprojectform/"}  component={Addprojectform}/>
                         <Route exact path={"/Logout/"} component={Logout}/>
+                        <Route exact path={"/applied_projects/"} render={(props)=><AppliedProjects {...props}/>}/>
                     </Switch>
             </div>
 
