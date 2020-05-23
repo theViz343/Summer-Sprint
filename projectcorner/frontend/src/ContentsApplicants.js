@@ -2,7 +2,7 @@ import React from 'react'
 import './Contents.css'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
-
+import {Redirect}  from 'react-router-dom';
 class ContentsApplicants extends React.Component {
   constructor(props) {
     super(props)
@@ -37,6 +37,21 @@ class ContentsApplicants extends React.Component {
    }
 
    render(){
+
+     if( localStorage.getItem( 'token') == null){
+        return (
+          <Redirect
+            to={{
+              pathname : '/',
+              state :  {
+                error : "You need to login first"
+              }
+            }}
+            />
+        )
+     }
+
+
      return(
        <div>
         <Navigationbar />

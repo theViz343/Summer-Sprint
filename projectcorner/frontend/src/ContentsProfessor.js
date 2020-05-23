@@ -2,7 +2,7 @@ import React from 'react'
 import './Contents.css'
 import Header from './Header'
 import Routes from './Routes'
-import {Link} from 'react-router-dom'
+import {Link , Redirect} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
 
 class ContentsProfessor extends React.Component {
@@ -39,6 +39,22 @@ class ContentsProfessor extends React.Component {
    }
 
    render(){
+
+     if( localStorage.getItem( 'token') == null){
+        return (
+          <Redirect
+            to={{
+              pathname : '/',
+              state :  {
+                error : "You need to login first"
+              }
+            }}
+            />
+        )
+     }
+
+
+
      return(
        <div>
        <Navigationbar />
