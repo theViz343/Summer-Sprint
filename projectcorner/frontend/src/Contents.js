@@ -38,6 +38,9 @@ class Contents extends React.Component {
    }
 
    render(){
+
+
+
      return(
        <div>
         <Navigationbar />
@@ -51,7 +54,10 @@ class Contents extends React.Component {
                 <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
                 <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
                 <br/>
-                <Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>
+                  {
+                    item.is_open?<Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>:
+                    <button class="btn btn-warning">Project is Closed</button>
+                  }
               </div>
             </div>
        ))}

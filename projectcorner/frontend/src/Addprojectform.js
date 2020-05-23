@@ -12,7 +12,8 @@ class Addprojectform extends React.Component {
       description: "",
       tech_used: "",
       criterion: "",
-      added:"",
+      added:false,
+      is_open:true,
     }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +40,7 @@ class Addprojectform extends React.Component {
                   "description": this.state.description,
                   "tech_used": this.state.tech_used,
                   "criterion": this.state.criterion,
+                  "is_open": this.state.is_open,
             }),
     })
       .then(res => res.json())
@@ -49,6 +51,7 @@ class Addprojectform extends React.Component {
           description:json.description,
           tech_used:json.tech_used,
           criterion:json.criterion,
+          added:true,
         });
 
       }
@@ -95,9 +98,7 @@ class Addprojectform extends React.Component {
             </form>
         </div>
           <br />
-          {added_alert()}
-
-
+          <div>{added_alert()}</div>
         </div>
 
             )

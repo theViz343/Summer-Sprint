@@ -3,8 +3,6 @@ from rest_framework import viewsets
 from .models import Application,Project
 from .serializers import ApplicationSerializer,ProjectSerializer
 
-
-
 class ApplicationViewSet(viewsets.ModelViewSet):
 
     serializer_class = ApplicationSerializer
@@ -13,9 +11,13 @@ class ApplicationViewSet(viewsets.ModelViewSet):
 
         queryset = Application.objects.all()
         project_id = self.request.query_params.get('project_id')
+        student_id = self.request.query_params.get('student_id')
 
         if project_id is not None:
             queryset = Application.objects.filter(project__pk=project_id)
+
+        if student_id is not None:
+            queryset = Application.objects.filter(student__pk=student_id)
 
         return queryset
 
