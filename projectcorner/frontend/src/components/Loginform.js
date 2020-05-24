@@ -118,7 +118,7 @@ class Loginform extends React.Component {
         if(this.state.is_student)
         {
           return(<Redirect to={{
-                  pathname: '/applied_projects/',
+                  pathname: '/DashboardStudent/',
                   state: { user_id : this.state.user_id
 
                         }
@@ -127,7 +127,7 @@ class Loginform extends React.Component {
         }
         else {
             return(<Redirect to={{
-                    pathname: '/ContentsProfessor/'+this.state.items.id,
+                    pathname: '/DashboardProfessor/',
                     state: { username: this.state.username,
                              password: this.state.password,
                              token : this.state.token,

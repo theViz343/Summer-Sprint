@@ -9,7 +9,6 @@ class ContentsApplicants extends React.Component {
     this.state={
       isLoaded : "a",
       items :[],
-      id : "2"
     }
 
   }
@@ -65,7 +64,6 @@ class ContentsApplicants extends React.Component {
                 <p class="card-text"><b>Department: </b>{item.department}</p>
                 <div class="card-text"><b>Grade: </b>{item.cgpa}</div>
                 <br/>
-                <a href="#" class="btn btn-primary">Back</a>
               </div>
             </div>
        ))}

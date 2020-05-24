@@ -14,6 +14,9 @@ import Closeproject from './Closeproject'
 import Deleteproject from './Deleteproject'
 import Myapplications from './Myapplications'
 import AppliedProjects from './AppliedProjects'
+import DashboardProfessor from './DashboardProfessor'
+import DashboardStudent from './DashboardStudent'
+
 class Routes extends Component {
     render() {
         return (
@@ -24,7 +27,7 @@ class Routes extends Component {
                         <Route exact path={"/Contents/"} render={(props)=><Contents {...props}/>}/>
                         <Route exact path={"/Header/"} component={Header}/>
                         <Route exact path={"/Footer/"} component={Footer}/>
-                        <Route exact path={"/ContentsProfessor/:professor_id"} component={ContentsProfessor}/>
+                        <Route exact path={"/ContentsProfessor/"} component={ContentsProfessor}/>
                         <Route exact path={"/ContentsApplicants/:project_id"} name="ContentsApplicants" component={ContentsApplicants}/>
                         <Route exact path={"/Applicationform/:project_id"} component={Applicationform}/>
                         <Route exact path={"/Closeproject/:project_id/:status"} component={Closeproject}/>
@@ -33,6 +36,8 @@ class Routes extends Component {
                         <Route exact path={"/Addprojectform/"}  component={Addprojectform}/>
                         <Route exact path={"/Logout/"} component={Logout}/>
                         <Route exact path={"/applied_projects/"} render={(props)=><AppliedProjects {...props}/>}/>
+                        <Route exact path={"/DashboardProfessor/"}  component={DashboardProfessor}/>
+                        <Route exact path={"/DashboardStudent/"}  component={DashboardStudent}/>
                     </Switch>
             </div>
 

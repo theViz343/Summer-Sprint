@@ -22,7 +22,7 @@ class ContentsProfessor extends React.Component {
 
    fetchdata(){
 
-     let url2 ="http://127.0.0.1:8000/projects/api/projects/?professor_id="+this.props.match.params.professor_id
+     let url2 ="http://127.0.0.1:8000/projects/api/projects/?professor_id="+localStorage.getItem('user_id')
      fetch(url2, {headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
 

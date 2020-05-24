@@ -57,7 +57,7 @@ class AppliedProjects extends React.Component {
       <div>
        <Navigationbar />
       <div className="container">
-
+      <Header content="Applications"/>
 
       {this.state.applied_list.map(item =>(
           <div className="card" >
