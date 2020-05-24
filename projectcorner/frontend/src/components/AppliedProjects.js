@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-
+import Header from './Header'
 class AppliedProjects extends React.Component {
   constructor(props) {
     super(props);
