@@ -1,0 +1,15 @@
+#applicant_img {
+
+width: 25%;
+height:25%;
+display: block;
+margin-left: auto;
+margin-right: auto;
+border-radius: 50%;
+
+  }
+
+#applicant_container
+{
+   border-radius: 20px;
+}
