@@ -54,22 +54,35 @@ class ApplicantDetails extends React.Component {
     return(
       <div>
       <Navigationbar/>
-      <div class="container " id="applicant_container">
+      <div class="container">
         <Header content="Applicant Details"/>
-       <div>
-         <img src={img_avatar} alt="Avatar" id="applicant_img" class="img-fluid"/>
-       </div>
+       <div class="card" id="applicant_container">
+         <h4 class="card-header bg-secondary">Applicant Information</h4>
+        <div class="card-body">
+        <div class="row">
 
-           <h6>Enrollment id:{this.state.enrollment_id} </h6>
-           <h6>Name : {this.state.name}</h6>
-           <h6>Department :{this.state.department}</h6>
-           <h6>Email : {this.state.email}</h6>
-           <h6>Mobile no :{this.state.phone}</h6>
-           <h6>Project :{this.state.project_title} </h6>
+          <div class="col-sm-2">
+            <img src={img_avatar} alt="Avatar" id="applicant_img"/>
+          </div>
+          <div class="col-sm-5">
+             <p class="cart-text"><b>Enrollment Id :</b>{this.state.enrollment_id} </p>
+             <p class="cart-text"><b>Name :</b> {this.state.name}</p>
+             <p class="cart-text"><b>Project :</b>{this.state.project_title} </p>
+           </div>
+           <div class="col-sm-5">
+              <p class="cart-text"><b>Department :</b>{this.state.department}</p>
+              <p class="cart-text"><b>Email :</b> {this.state.email}</p>
+              <p class="cart-text"><b>Mobile no :</b>{this.state.phone}</p>
+            </div>
+        </div>
+        </div>
+      </div>
 
-         <div>
-             <h6>Statement of purpose:</h6>
-             <p> {this.state.statment_of_purpose}</p>
+         <div class="card" id="statement_container">
+             <h4 class="card-header bg-secondary">Statement Of Purpose</h4>
+             <div class="card-body">
+              <p class="card-text"> {this.state.statment_of_purpose}</p>
+            </div>
          </div>
        </div>
       </div>

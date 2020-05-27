@@ -62,9 +62,9 @@ class AppliedProjects extends React.Component {
       <Header content="Applications"/>
 
       {this.state.applied_list.map(item =>(
-          <div className="card" >
+          <div className="card" id="card" >
              <div className="card-body">
-               <h4 className="card-title">{item.project.title}</h4>
+               <h4 className="card-title" id="card-title">{item.project.title}</h4>
                <p className="card-text">{item.project.description}</p>
                <p className="card-text"><b>Technologies used: </b>{item.project.tech_used}</p>
                <div className="card-text"><b>Criterion: </b>{item.project.criterion}</div>
