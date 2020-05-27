@@ -89,9 +89,9 @@ class Contents extends React.Component {
        <div class="container">
        <Header content="project" />
        {this.state.items.map(item =>(
-           <div class="card" >
+           <div class="card" id="card">
               <div class="card-body">
-                <h4 class="card-title">{item.title}</h4>
+                <h4 class="card-title" id="card-title">{item.title}</h4>
                 <p class="card-text">{item.description}</p>
                 <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
                 <div class="card-text"><b>Criterion: </b>{item.criterion}</div>

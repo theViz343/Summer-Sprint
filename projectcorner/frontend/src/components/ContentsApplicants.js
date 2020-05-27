@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/Contents.css'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
-import {Redirect}  from 'react-router-dom';
+import {Redirect,Link}  from 'react-router-dom';
 class ContentsApplicants extends React.Component {
   constructor(props) {
     super(props)
@@ -22,7 +22,6 @@ class ContentsApplicants extends React.Component {
      let url2 = "http://127.0.0.1:8000/projects/api/applications/?project_id="+this.props.match.params.project_id
      fetch(url2, {headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
-
         }})
        .then(res => res.json())
        .then(
@@ -50,24 +49,35 @@ class ContentsApplicants extends React.Component {
         )
      }
 
+    return(
+        <div>
+          <Navigationbar />
+         <div class="container">
+           <Header content="Applicants" />
+           <table class="table table-hover">
+           <thead class="thead-dark">
+               <tr>
+                 <th>Name</th>
+                 <th>Enrollment Id</th>
+                 <th>Department</th>
+                 <th>CGPA</th>
+                 <th>Details</th>
+               </tr>
+             </thead>
+           <tbody>
+         {this.state.items.map(item =>(
 
-     return(
-       <div>
-        <Navigationbar />
-       <div class="container">
-       <Header content="Applicants" />
-       {this.state.items.map(item =>(
-           <div class="card" >
-              <div class="card-body">
-                <h4 class="card-title">{item.name}</h4>
-                <p class="card-text">{item.enrollment_id}</p>
-                <p class="card-text"><b>Department: </b>{item.department}</p>
-                <div class="card-text"><b>Grade: </b>{item.cgpa}</div>
-                <br/>
-              </div>
-            </div>
+        <tr>
+          <td>{item.name}</td>
+          <td>{item.enrollment_id}</td>
+          <td>{item.department}</td>
+          <td>{item.cgpa}</td>
+          <td><Link to={`/ApplicantDetails/${item.id}`} class="btn btn-dark">Details</Link></td>
+        </tr>
        ))}
 
+             </tbody>
+        </table>
        </div>
      </div>
      )

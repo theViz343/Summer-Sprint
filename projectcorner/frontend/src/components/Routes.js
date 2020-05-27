@@ -16,6 +16,7 @@ import Myapplications from './Myapplications'
 import AppliedProjects from './AppliedProjects'
 import DashboardProfessor from './DashboardProfessor'
 import DashboardStudent from './DashboardStudent'
+import ApplicantDetails from './ApplicantDetails'
 
 class Routes extends Component {
     render() {
@@ -38,6 +39,7 @@ class Routes extends Component {
                         <Route exact path={"/applied_projects/"} render={(props)=><AppliedProjects {...props}/>}/>
                         <Route exact path={"/DashboardProfessor/"}  component={DashboardProfessor}/>
                         <Route exact path={"/DashboardStudent/"}  component={DashboardStudent}/>
+                        <Route exact path={"/ApplicantDetails/:application_id"} component={ApplicantDetails}/>
                     </Switch>
             </div>
 

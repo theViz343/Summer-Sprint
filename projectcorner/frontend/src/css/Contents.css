@@ -1,4 +1,4 @@
-.card{
+#card{
   background-color: #e8e8ed;
   transition-duration:2000ms;
   margin-top: 3px;
@@ -6,12 +6,12 @@
   box-shadow: None;
 }
 
-.card-title{
+#card-title{
 
   color:#0d0552;
 }
 
-.card:hover{
+#card:hover{
   transform:scale(1.002);
   box-shadow:2px 2px 2px 2px #8d8d96;
 }
