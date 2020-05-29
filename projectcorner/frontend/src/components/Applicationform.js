@@ -45,6 +45,7 @@ class Applicationform extends React.Component {
                       "email_id":this.state.email_id,
                       "cgpa":this.state.cgpa,
                       "statement_of_purpose":this.state.statement_of_purpose,
+                      "is_selected":false,
                   }),
           })
             .then(res => res.json())
