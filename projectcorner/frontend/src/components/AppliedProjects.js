@@ -11,7 +11,7 @@ class AppliedProjects extends React.Component {
     super(props);
     this.state = {
       applied_list : [],
-      data_fetched : false,
+      isLoaded : false,
       user_id : ''
     }
   }
@@ -24,16 +24,22 @@ class AppliedProjects extends React.Component {
       user_id = localStorage.getItem('user_id');
     }
 
+    var that = this
     let url = 'http://localhost:8000/projects/api/applications/?student_id='+user_id;
     fetch(url ,{headers: {
       Authorization: `JWT ${localStorage.getItem('token')}`
     }} )
     .then(res => res.json())
     .then(data => {
-      this.setState({
-        applied_list: data,
-        data_fetched : true,
-      })
+
+      setTimeout(function() {
+        that.setState({
+          isLoaded: true,
+          applied_list: data,
+        })
+      },3000);
+
+
     }).catch(e=>{
       //kya pata kya likhna hai
     })
@@ -53,6 +59,8 @@ class AppliedProjects extends React.Component {
            />
        )
     }
+
+    const isLoaded = this.state.isLoaded
 
 
     return (
@@ -77,7 +85,7 @@ class AppliedProjects extends React.Component {
            </div>
       ))}
 
-      <Link to={"/Contents/"} className="text-center font-weight-bold">Apply on more projects</Link>
+    {isLoaded?<Link to={"/Contents/"} className="text-center font-weight-bold">Apply on more projects</Link>:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
 
     </div>
     </div>
