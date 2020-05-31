@@ -25,7 +25,7 @@ class Addprojectform extends React.Component {
     }
 
     handleSubmit(event) {
-
+      event.preventDefault();
       fetch('http://localhost:8000/projects/api/projects/', {
       method: 'POST',
       headers: {
@@ -46,18 +46,27 @@ class Addprojectform extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.setState({
+        if(json.detail == null)
+        {
+          this.setState({
 
-          title:json.title,
-          description:json.description,
-          tech_used:json.tech_used,
-          criterion:json.criterion,
-          added:true,
-        });
+            title:json.title,
+            description:json.description,
+            tech_used:json.tech_used,
+            criterion:json.criterion,
+            added:true,
+          });
+        }
+        else if(json.detail == "You do not have permission to perform this action.")
+        {
+          this.setState({
+            error : "you are not authorized for this"
+          })
+        }
 
       }
       )
-      event.preventDefault();
+
     }
 
     render(){
@@ -75,15 +84,15 @@ class Addprojectform extends React.Component {
          )
       }
 
-      const added_alert = () =>{
+      const message_alert = () =>{
 
           if(this.state.added)
           {
             return(<div class="alert alert-primary">Successfully Added project</div>)
           }
-          else
+          else if(this.state.error)
           {
-            return
+            return(<div class="alert alert-danger">{this.state.error}</div>)
           }
 
       }
@@ -112,7 +121,7 @@ class Addprojectform extends React.Component {
             </form>
         </div>
           <br />
-          <div>{added_alert()}</div>
+          <div>{message_alert()}</div>
         </div>
 
             )

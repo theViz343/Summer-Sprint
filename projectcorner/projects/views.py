@@ -2,10 +2,37 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Application,Project
 from .serializers import ApplicationSerializer,ProjectSerializer
+from rest_framework.permissions import BasePermission ,IsAuthenticated
+
+
+class IsTeacher(BasePermission):
+    def has_permission(self,request,view):
+        if request.user.is_teacher:
+            return True
+        else:
+            return False
+
+class IsStudent(BasePermission):
+    def has_permission(self,request , view):
+        if request.user.is_student:
+            return True
+        else:
+            return False
+
+
+
 
 class ApplicationViewSet(viewsets.ModelViewSet):
 
     serializer_class = ApplicationSerializer
+
+    def get_permissions(self):
+        if self.action == 'create':
+            permission_classes = [IsAuthenticated ,IsStudent]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
 
     def get_queryset(self):
 
@@ -24,6 +51,14 @@ class ApplicationViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
 
     serializer_class = ProjectSerializer
+
+
+    def get_permissions(self):
+        if self.action == 'create':
+            permission_classes = [IsAuthenticated , IsTeacher]
+        else:
+            permission_classes = [IsAuthenticated ]
+        return [permission() for permission in permission_classes]
 
     def get_queryset(self):
 

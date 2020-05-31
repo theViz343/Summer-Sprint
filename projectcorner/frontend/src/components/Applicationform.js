@@ -18,6 +18,7 @@ class Applicationform extends React.Component {
       cgpa:"",
       statement_of_purpose:"",
       applied:false,
+      error: '',
     }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,6 +29,7 @@ class Applicationform extends React.Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
 
           fetch('http://localhost:8000/projects/api/applications/', {
             method: 'POST',
@@ -50,15 +52,21 @@ class Applicationform extends React.Component {
           })
             .then(res => res.json())
             .then(json => {
-              this.setState({
-                applied:true
-              });
-
-            }
+                if(json.detail == null)
+                {
+                  this.setState({
+                    applied:true
+                  });
+                }
+                else if(json.detail == "You do not have permission to perform this action.")
+                {
+                  this.setState({
+                    error : 'you are not authorized for this action'
+                  });
+                }
+              }
             )
-            event.preventDefault();
 
-      event.preventDefault();
     }
 
     render() {
@@ -76,15 +84,15 @@ class Applicationform extends React.Component {
          )
       }
 
-        const applied_alert = () =>{
+        const message_alert = () =>{
 
             if(this.state.applied)
             {
               return(<div class="alert alert-primary">Successfully Applied</div>)
             }
-            else
+            else if(this.state.error)
             {
-              return
+              return(<div class="alert alert-danger">{this.state.error}</div>)
             }
 
         }
@@ -125,7 +133,7 @@ class Applicationform extends React.Component {
             <input class="btn btn-primary" value="Submit" type="submit"/>
             </form>
             <br/>
-            {applied_alert()}
+            {message_alert()}
         </div>
         </div>
 
