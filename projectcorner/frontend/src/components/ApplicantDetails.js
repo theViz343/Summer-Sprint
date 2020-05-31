@@ -8,6 +8,7 @@ class ApplicantDetails extends React.Component {
   constructor(props){
     super(props)
     this.state={
+      isLoaded:false,
       name:"",
       enrollment_id:"",
       email:"",
@@ -35,7 +36,7 @@ class ApplicantDetails extends React.Component {
       .then(
         (result) => {
           this.setState({
-            isLoaded: "b",
+            isLoaded: true,
             name:result.name,
             enrollment_id:result.enrollment_id,
             email:result.email_id,

@@ -9,7 +9,8 @@ class Contents extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      isLoaded : false,
+      isLoaded :false,
+      isLoadedapp:false,
       items :[],
       applied_items :[]
     }
@@ -28,18 +29,22 @@ class Contents extends React.Component {
        user_id = localStorage.getItem('user_id');
      }
 
-     // let url="http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=f0597c3b2f81427ca2c47ae854474efb"
      let url2 ="http://127.0.0.1:8000/projects/api/projects/"
+     var that = this
      fetch(url2,{headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
         }})
-       .then(res => res.json())
-       .then(
+        .then(res => res.json())
+        .then(
+
          (result) => {
-           this.setState({
-             isLoaded: true,
-             items: result
-           })
+
+           setTimeout(function() {
+             that.setState({
+               isLoaded: true,
+               items: result,
+             })
+           },1000);
          },
        ).catch(e=>{
 
@@ -54,7 +59,7 @@ class Contents extends React.Component {
        .then(data => {
          this.setState({
            applied_items: data,
-           isLoaded: true,
+           isLoadedapp: true,
          })
        }).catch(e=>{
          //kya pata kya likhna hai
@@ -81,34 +86,43 @@ class Contents extends React.Component {
         )
      }
 
+      const isLoaded = this.state.isLoaded;
 
 
      return(
+
+
        <div>
         <Navigationbar />
        <div class="container">
        <Header content="project" />
+      {isLoaded?null:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
        {this.state.items.map(item =>(
            <div class="card" id="card">
               <div class="card-body">
                 <h4 class="card-title" id="card-title">{item.title}</h4>
-                <p class="card-text">{item.description}</p>
                 <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
-                <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
-                <br/>
+                <p class="card-text"><b>Criterion: </b>{item.criterion}</p>
+                <div>
                   {
                     item.is_open?(
-                      this.state.applied_items.includes(item.id) ? <div class="btn btn-primary">You have already applied for this project</div>
+                      this.state.applied_items.includes(item.id) ? <div class="btn btn-secondary">Applied</div>
                       :<Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>
                     )
                     :  <button class="btn btn-warning">Project is Closed</button>
                   }
+                  <Link to={`/ProjectDetails/${item.id}`} class="btn btn-info float-right">Details</Link>
+                </div>
               </div>
             </div>
        ))}
 
+
+
      </div>
      </div>
+
+
      )
    }
 

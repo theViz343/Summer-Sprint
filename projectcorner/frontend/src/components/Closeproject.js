@@ -1,5 +1,7 @@
 import React from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+import Navigationbar from './Navigationbar';
+
 
 class Closeproject extends React.Component {
   constructor(props) {
@@ -67,14 +69,21 @@ class Closeproject extends React.Component {
                 }
 
           }
-          else{
-                  return(<div class="alert alert-danger">couldn't proceed your request</div>)
+          else
+          {
+                return(<div class="alert alert-danger">couldn't proceed your request</div>)
           }
 
     }
 
     return(
-      <div>{error_alert()}</div>
+      <div>
+        <Navigationbar/>
+        <div class="container my-3">
+        <div>{error_alert()}</div>
+        <Link to={"/ContentsProfessor/"} class="btn btn-dark">Back to Projects</Link>
+        </div>
+      </div>
     )
 
   }

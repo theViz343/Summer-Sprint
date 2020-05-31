@@ -11,7 +11,7 @@ class AppliedProjects extends React.Component {
     super(props);
     this.state = {
       applied_list : [],
-      data_fetched : false,
+      isLoaded : false,
       user_id : ''
     }
   }
@@ -24,16 +24,22 @@ class AppliedProjects extends React.Component {
       user_id = localStorage.getItem('user_id');
     }
 
+    var that = this
     let url = 'http://localhost:8000/projects/api/applications/?student_id='+user_id;
     fetch(url ,{headers: {
       Authorization: `JWT ${localStorage.getItem('token')}`
     }} )
     .then(res => res.json())
     .then(data => {
-      this.setState({
-        applied_list: data,
-        data_fetched : true,
-      })
+
+      setTimeout(function() {
+        that.setState({
+          isLoaded: true,
+          applied_list: data,
+        })
+      },1000);
+
+
     }).catch(e=>{
       //kya pata kya likhna hai
     })
@@ -54,6 +60,8 @@ class AppliedProjects extends React.Component {
        )
     }
 
+    const isLoaded = this.state.isLoaded
+
 
     return (
       <div>
@@ -65,19 +73,22 @@ class AppliedProjects extends React.Component {
           <div className="card" id="card" >
              <div className="card-body">
                <h4 className="card-title" id="card-title">{item.project.title}</h4>
-               <p className="card-text">{item.project.description}</p>
                <p className="card-text"><b>Technologies used: </b>{item.project.tech_used}</p>
                <div className="card-text"><b>Criterion: </b>{item.project.criterion}</div>
                <br/>
+               <div>
                {item.is_selected
                  ? <div className="text-success">Congratulations you are selected</div>
                  : <div className="text-danger">Applying on more projects may improve your chance</div>
                }
+                 <Link to={`/ProjectDetails/${item.project.id}`} class="btn btn-dark float-right">View Project</Link>
+                <Link to={`/ApplicantDetails/${item.id}`} class="btn btn-info float-right">View Application</Link>
+              </div>
              </div>
            </div>
       ))}
 
-      <Link to={"/Contents/"} className="text-center font-weight-bold">Apply on more projects</Link>
+    {isLoaded?<Link to={"/Contents/"} className="text-center font-weight-bold">Apply on more projects</Link>:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
 
     </div>
     </div>

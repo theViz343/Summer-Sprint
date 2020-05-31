@@ -7,7 +7,7 @@ class ContentsApplicants extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      isLoaded : "a",
+      isLoaded : false,
       items :[],
     }
 
@@ -19,6 +19,7 @@ class ContentsApplicants extends React.Component {
 
    fetchdata(){
 
+     var that = this;
      let url2 = "http://127.0.0.1:8000/projects/api/applications/?project_id="+this.props.match.params.project_id
      fetch(url2, {headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
@@ -26,10 +27,12 @@ class ContentsApplicants extends React.Component {
        .then(res => res.json())
        .then(
          (result) => {
-           this.setState({
-             isLoaded: "b",
-             items: result
-           })
+           setTimeout(function() {
+             that.setState({
+               isLoaded: true,
+               items: result,
+             })
+           },1000);
          },
        )
    }
@@ -49,11 +52,14 @@ class ContentsApplicants extends React.Component {
         )
      }
 
+     const isLoaded = this.state.isLoaded
+
     return(
         <div>
           <Navigationbar />
          <div class="container">
            <Header content="Applicants" />
+          {isLoaded?
            <table class="table table-hover">
            <thead class="thead-dark">
                <tr>
@@ -78,6 +84,7 @@ class ContentsApplicants extends React.Component {
 
              </tbody>
         </table>
+        :<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
        </div>
      </div>
      )
