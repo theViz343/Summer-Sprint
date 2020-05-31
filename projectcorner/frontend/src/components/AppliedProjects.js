@@ -73,14 +73,17 @@ class AppliedProjects extends React.Component {
           <div className="card" id="card" >
              <div className="card-body">
                <h4 className="card-title" id="card-title">{item.project.title}</h4>
-               <p className="card-text">{item.project.description}</p>
                <p className="card-text"><b>Technologies used: </b>{item.project.tech_used}</p>
                <div className="card-text"><b>Criterion: </b>{item.project.criterion}</div>
                <br/>
+               <div>
                {item.is_selected
                  ? <div className="text-success">Congratulations you are selected</div>
                  : <div className="text-danger">Applying on more projects may improve your chance</div>
                }
+                 <Link to={`/ProjectDetails/${item.project.id}`} class="btn btn-dark float-right">View Project</Link>
+                <Link to={`/ApplicantDetails/${item.id}`} class="btn btn-info float-right">View Application</Link>
+              </div>
              </div>
            </div>
       ))}

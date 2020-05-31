@@ -101,10 +101,9 @@ class Contents extends React.Component {
            <div class="card" id="card">
               <div class="card-body">
                 <h4 class="card-title" id="card-title">{item.title}</h4>
-                <p class="card-text">{item.description}</p>
                 <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
                 <p class="card-text"><b>Criterion: </b>{item.criterion}</p>
-                <p class="card-text"><b>Posted-by: </b>{item.professor.user.username}</p>
+                <div>
                   {
                     item.is_open?(
                       this.state.applied_items.includes(item.id) ? <div class="btn btn-secondary">Applied</div>
@@ -112,6 +111,8 @@ class Contents extends React.Component {
                     )
                     :  <button class="btn btn-warning">Project is Closed</button>
                   }
+                  <Link to={`/ProjectDetails/${item.id}`} class="btn btn-info float-right">Details</Link>
+                </div>
               </div>
             </div>
        ))}
