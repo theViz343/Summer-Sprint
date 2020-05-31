@@ -37,7 +37,7 @@ class AppliedProjects extends React.Component {
           isLoaded: true,
           applied_list: data,
         })
-      },3000);
+      },1000);
 
 
     }).catch(e=>{

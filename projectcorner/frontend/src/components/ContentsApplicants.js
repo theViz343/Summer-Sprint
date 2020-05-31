@@ -32,7 +32,7 @@ class ContentsApplicants extends React.Component {
                isLoaded: true,
                items: result,
              })
-           },3000);
+           },1000);
          },
        )
    }
@@ -59,7 +59,7 @@ class ContentsApplicants extends React.Component {
           <Navigationbar />
          <div class="container">
            <Header content="Applicants" />
-          {isLoaded?null:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
+          {isLoaded?
            <table class="table table-hover">
            <thead class="thead-dark">
                <tr>
@@ -84,6 +84,7 @@ class ContentsApplicants extends React.Component {
 
              </tbody>
         </table>
+        :<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
        </div>
      </div>
      )

@@ -36,7 +36,7 @@ class ContentsProfessor extends React.Component {
                isLoaded: true,
                items: result,
              })
-           },3000);
+           },1000);
          },
        )
    }

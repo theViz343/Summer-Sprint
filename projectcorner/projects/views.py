@@ -9,15 +9,15 @@ class ApplicationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
 
-        queryset = Application.objects.all()
+        queryset = Application.objects.all().order_by('-pk')
         project_id = self.request.query_params.get('project_id')
         student_id = self.request.query_params.get('student_id')
 
         if project_id is not None:
-            queryset = queryset.filter(project__pk=project_id)
+            queryset = queryset.filter(project__pk=project_id).order_by('-pk')
 
         if student_id is not None:
-            queryset = queryset.filter(student__pk=student_id)
+            queryset = queryset.filter(student__pk=student_id).order_by('-pk')
 
         return queryset
 
@@ -27,10 +27,10 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
 
-        queryset = Project.objects.all()
+        queryset = Project.objects.all().order_by('-pk')
         professor_id = self.request.query_params.get('professor_id')
 
         if professor_id is not None:
-            queryset = queryset.filter(professor__pk=professor_id)
+            queryset = queryset.filter(professor__pk=professor_id).order_by('-pk')
 
         return queryset
