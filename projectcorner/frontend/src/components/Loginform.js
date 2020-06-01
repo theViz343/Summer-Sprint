@@ -69,9 +69,6 @@ class Loginform extends React.Component {
           .then(res => res.json())
           .then(
             (result) => {
-
-
-
               this.setState({
                 isLoaded: "b",
                 items: result[0],
@@ -138,29 +135,32 @@ class Loginform extends React.Component {
       }
 
 
-
-
-
-
     return (
       <div>
-      <Navigationbar />
-      <div class="form-container">
-        <div class="form-header">
-          <h4>Enter Your Credentials</h4>
+        <Navigationbar />
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+              <div class="form-container">
+                <div class="form-header">
+                  <h4>Enter Your Credentials</h4>
+                </div>
+                  <form onSubmit={this.handleSubmit}>
+                      Name:
+                      <input type="text" name="username" value={this.state.value} onChange={this.handleChange} />
+                      Password:
+                      <input type="password" name="password" value={this.state.value} onChange={this.handleChange} />
+                      <br/>
+                    <button class="btn btn-primary" type="submit" value="Submit" >Login</button>
+                  </form>
+                  <br/>
+                  <div>{error_alert()}</div>
+              </div>
+            </div>
+            <div class="col-sm-2"></div>
+            </div>
         </div>
-          <form onSubmit={this.handleSubmit}>
-              Name:
-              <input type="text" name="username" value={this.state.value} onChange={this.handleChange} />
-
-              Password:
-              <input type="password" name="password" value={this.state.value} onChange={this.handleChange} />
-              <br/>
-            <button class="btn btn-primary" type="submit" value="Submit" >Login</button>
-          </form>
-          <br/>
-          <div>{error_alert()}</div>
-      </div>
       </div>
     );
   }

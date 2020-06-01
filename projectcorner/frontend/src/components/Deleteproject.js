@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from  'react-router-dom';
+import Navigationbar from './Navigationbar'
 
 export default class Deleteproject extends React.Component {
   constructor(props) {
@@ -35,7 +37,13 @@ export default class Deleteproject extends React.Component {
       }
 
       return(
-        <div>{error_alert()}</div>
+        <div>
+          <Navigationbar/>
+          <div class="container my-3">
+          <div>{error_alert()}</div>
+          <Link to={"/ContentsProfessor/"} class="btn btn-dark">Back to Projects</Link>
+          </div>
+        </div>
       )
   }
 

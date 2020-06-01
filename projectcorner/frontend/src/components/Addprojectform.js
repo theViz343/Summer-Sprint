@@ -101,6 +101,7 @@ class Addprojectform extends React.Component {
       return (
         <div>
         <Navigationbar />
+        <div class="container p-3">
         <div class="form-container">
           <div class="form-header">
             <h4>Enter Project Details</h4>
@@ -122,6 +123,7 @@ class Addprojectform extends React.Component {
         </div>
           <br />
           <div>{message_alert()}</div>
+          </div>
         </div>
 
             )

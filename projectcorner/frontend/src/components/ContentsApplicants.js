@@ -66,7 +66,6 @@ class ContentsApplicants extends React.Component {
                  <th>Name</th>
                  <th>Enrollment Id</th>
                  <th>Department</th>
-                 <th>CGPA</th>
                  <th>Details</th>
                </tr>
              </thead>
@@ -77,7 +76,6 @@ class ContentsApplicants extends React.Component {
           <td>{item.name}</td>
           <td>{item.enrollment_id}</td>
           <td>{item.department}</td>
-          <td>{item.cgpa}</td>
           <td><Link to={`/ApplicantDetails/${item.id}`} class="btn btn-dark">Details</Link></td>
         </tr>
        ))}

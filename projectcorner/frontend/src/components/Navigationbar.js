@@ -31,7 +31,7 @@ class CollapseButton extends React.Component {
 
     return(
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-        <span class={this.state.toggler}></span>
+        <span><i class="fa fa-align-justify fa-custom"></i></span>
       </button>
     )
 
@@ -70,16 +70,12 @@ class Navlinks extends React.Component{
       return(
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-              <li class="nav-item"><Link to={"/ContentsApplicants/"} class="nav-link">Home</Link></li>
-              <li class="nav-item"><Link to={"/Contents/"} class="nav-link">Contents</Link></li>
+              <li class="nav-item"><Link to={"/"} class="nav-link">Home</Link></li>
+              <li class="nav-item"><Link to={"/"} class="nav-link">About</Link></li>
+              <li class="nav-item"><Link to={"/"} class="nav-link">Contact</Link></li>
               <li class="nav-item"><Link to={"/"} class="nav-link">Login</Link></li>
-              <li class="nav-item"><Link to={"/ContentsProfessor/:professor_id"} class="nav-link">About</Link></li>
-              <li class="nav-item"><Link to={"/Addprojectform/"} class="nav-link">Add</Link></li>
-              <li class="nav-item"><Link to={`/Myapplications/${localStorage.getItem('user_id')}`} class="nav-link">Add</Link></li>
             </ul>
-
             {usersessions()}
-
         </div>
 
       )
