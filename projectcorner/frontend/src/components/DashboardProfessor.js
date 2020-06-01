@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import Navigationbar from './Navigationbar';
 import Header from './Header';
+import '../css/Dashboard.css'
 
 class DashboardProfessor extends React.Component {
   constructor(props) {
@@ -20,24 +21,24 @@ class DashboardProfessor extends React.Component {
         <Header content="Welcome" />
           <div class="row">
             <div class="col-sm-6">
-              <div class="card">
-                <div class="card-header bg-secondary">
-                  My Projects
-                </div>
+              <div class="card dashboard-card">
                 <div class="card-body">
-                  <h5 class="card-title">View all your projects</h5>
-                  <Link to={"/ContentsProfessor/"} class="btn btn-primary stretched-link">View</Link>
+                  <h4 class="card-title">My Projects</h4>
+                  <p class="card-text">Track all your posted projects</p>
+                  <Link to={"/ContentsProfessor/"} class="btn btn-info dashboard-button">
+                    <i class="fa fa-list-ul fa-dashboard-custom"></i>
+                  </Link>
                 </div>
               </div>
             </div>
             <div class="col-sm-6">
-              <div class="card">
-                <div class="card-header bg-secondary">
-                  Add Project
-                </div>
+              <div class="card dashboard-card">
                 <div class="card-body">
-                  <h5 class="card-title">Add a new project</h5>
-                 <Link to={"/Addprojectform/"} class="btn btn-primary stretched-link">Add</Link>
+                  <h4 class="card-title">Add Project</h4>
+                    <p class="card-text">Add a new project</p>
+                 <Link to={"/Addprojectform/"} class="btn btn-info dashboard-button">
+                    <i class="fa fa-plus fa-dashboard-custom"></i>
+                 </Link>
                 </div>
               </div>
             </div>
