@@ -29,6 +29,7 @@ class Applicationform extends React.Component {
     }
 
     handleSubmit(event) {
+        this.setState({value:''})
         event.preventDefault();
 
           fetch('http://localhost:8000/projects/api/applications/', {

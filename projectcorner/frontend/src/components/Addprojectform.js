@@ -26,13 +26,12 @@ class Addprojectform extends React.Component {
 
     handleSubmit(event) {
       event.preventDefault();
+      this.setState({value:''})
       fetch('http://localhost:8000/projects/api/projects/', {
       method: 'POST',
       headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-
-
       },
       body:JSON.stringify( {
 
