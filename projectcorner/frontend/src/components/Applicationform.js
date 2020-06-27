@@ -19,6 +19,7 @@ class Applicationform extends React.Component {
       statement_of_purpose:"",
       applied:false,
       error: '',
+      resume : null
     }
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,28 +28,32 @@ class Applicationform extends React.Component {
     handleChange(event) {
       this.setState({[event.target.name]: event.target.value});
     }
+    handleResumeChange = e => {
+      this.setState({
+        resume: e.target.files[0]
+      })
+    }
 
     handleSubmit(event) {
-        event.preventDefault();
+          event.preventDefault();
+          let form_data = new FormData();
+          form_data.append('project_id' , this.props.match.params.project_id)
+          form_data.append("student_id" , localStorage.getItem('user_id'))
+          form_data.append('name' , this.state.name)
+          form_data.append('enrollment_id' , this.state.enrollment_id)
+          form_data.append('department' , this.state.department)
+          form_data.append('email_id' ,this.state.email_id )
+          form_data.append('cgpa' , this.state.cgpa)
+          form_data.append('statement_of_purpose' , this.state.statement_of_purpose)
+          form_data.append('is_selected' , false)
+          form_data.append('resume' , this.state.resume , this.state.resume.name)
 
           fetch('http://localhost:8000/projects/api/applications/', {
             method: 'POST',
             headers: {
               Authorization: `JWT ${localStorage.getItem('token')}`,
-              'Content-Type': 'application/json',
             },
-            body:JSON.stringify( {
-
-                      "project_id": this.props.match.params.project_id,
-                      "student_id": localStorage.getItem('user_id'),
-                      "name":this.state.name,
-                      "enrollment_id":this.state.enrollment_id,
-                      "department":this.state.department,
-                      "email_id":this.state.email_id,
-                      "cgpa":this.state.cgpa,
-                      "statement_of_purpose":this.state.statement_of_purpose,
-                      "is_selected":false,
-                  }),
+            body:form_data
           })
             .then(res => res.json())
             .then(json => {
@@ -107,25 +112,29 @@ class Applicationform extends React.Component {
           </div>
             <form onSubmit={this.handleSubmit}>
 
-
+              <div className = "form-group">
               Name:
-              <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-
+              <input type="text" name="name" value={this.state.value} onChange={this.handleChange} required/>
+              </div>
               Enrollment id:
-              <input type="text" name="enrollment_id" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="enrollment_id" value={this.state.value} onChange={this.handleChange} required />
 
               Department:
-              <input type="text" name="department" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="department" value={this.state.value} onChange={this.handleChange} required/>
 
               Email id:
-              <input type="text" name="email_id" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="email_id" value={this.state.value} onChange={this.handleChange} required/>
 
               CGPA:
-              <input type="text" name="cgpa" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="cgpa" value={this.state.value} onChange={this.handleChange} required/>
 
               Statement Of Purpose:
-              <input type="text" name="statement_of_purpose" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="statement_of_purpose" value={this.state.value} onChange={this.handleChange} required/>
 
+              Upload Resume  :
+              <input type="file" name="resume" id="resume"
+                onChange = {this.handleResumeChange} required
+                />
 
 
             <br/>

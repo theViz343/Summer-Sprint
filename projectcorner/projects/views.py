@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from .models import Application,Project
 from .serializers import ApplicationSerializer,ProjectSerializer
 from rest_framework.permissions import BasePermission ,IsAuthenticated
+from rest_framework.parsers import FormParser , MultiPartParser
 
 
 class IsTeacher(BasePermission):
@@ -24,6 +25,7 @@ class IsStudent(BasePermission):
 
 class ApplicationViewSet(viewsets.ModelViewSet):
 
+    parser_classes = (MultiPartParser , FormParser)
     serializer_class = ApplicationSerializer
 
     def get_permissions(self):

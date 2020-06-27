@@ -26,6 +26,6 @@ class Application(models.Model):
     student = models.ForeignKey('accounts.Student', on_delete=models.CASCADE , default=None)
     project=models.ForeignKey(Project, on_delete=models.CASCADE)
     is_selected = models.BooleanField(default=False)
-
+    resume = models.FileField(upload_to="resume" , default="default.pdf")
     def __str__(self):
         return self.name
