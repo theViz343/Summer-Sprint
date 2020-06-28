@@ -39,12 +39,22 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         queryset = Application.objects.all().order_by('-pk')
         project_id = self.request.query_params.get('project_id')
         student_id = self.request.query_params.get('student_id')
+        status = self.request.query_params.get('status')
 
         if project_id is not None:
             queryset = queryset.filter(project__pk=project_id).order_by('-pk')
 
         if student_id is not None:
             queryset = queryset.filter(student__pk=student_id).order_by('-pk')
+
+        if status is not None :
+            if status == "all":
+                queryset = queryset.filter(project__pk=project_id).order_by('-pk')
+            elif status == "selected" :
+                queryset = queryset.filter(is_selected=True).filter(project__pk=project_id).order_by('-pk')
+            else :
+                queryset = queryset.filter(is_selected=False).filter(project__pk=project_id).order_by('-pk')
+
 
         return queryset
 
