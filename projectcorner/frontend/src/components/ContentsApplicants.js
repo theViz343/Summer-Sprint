@@ -75,9 +75,12 @@ class ContentsApplicants extends React.Component {
           {isLoaded?
             <div>
             <div class="form-group">
-              <label for="cars"><b>Filter:</b></label>
-              <select class="form-control" id="cars" onChange={this.handleChange}>
-                <option value="all">{this.state.status}</option>
+              <label for="choice"><b>Filter:</b></label>
+              <select class="form-control" id="choice" onChange={this.handleChange}>
+              <option value="none" selected disabled hidden>
+                   Select an Option
+               </option>
+                <option value="all">All</option>
                 <option value="selected">Selected</option>
                 <option value="Not selected">Not Selected</option>
               </select>
