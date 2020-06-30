@@ -36,6 +36,7 @@ class Applicationform extends React.Component {
 
     handleSubmit(event) {
           event.preventDefault();
+          this.setState({value:''})
           let form_data = new FormData();
           form_data.append('project_id' , this.props.match.params.project_id)
           form_data.append("student_id" , localStorage.getItem('user_id'))

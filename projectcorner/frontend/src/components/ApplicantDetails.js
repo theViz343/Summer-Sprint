@@ -61,20 +61,19 @@ class ApplicantDetails extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
+    let form_data = new FormData();
+    form_data.append('project_id',this.state.project_id)
+    form_data.append('student_id',this.state.student_id)
+    form_data.append('is_selected',!this.state.is_selected)
+
     let url2 = `http://127.0.0.1:8000/projects/api/applications/${this.state.application_id}/`
     fetch(url2, {
       method: 'PATCH',
       headers: {
            Authorization: `JWT ${localStorage.getItem('token')}`,
-           'Content-Type': 'application/json',
        },
-      body : JSON.stringify(
-        {
-          "project_id" : this.state.project_id,
-          "student_id" : this.state.student_id,
-          "is_selected" : !this.state.is_selected,
-        }
-      )})
+      body : form_data
+    })
       .then(res => res.json())
       .then(res => {
         this.setState({is_selected : res.is_selected})
