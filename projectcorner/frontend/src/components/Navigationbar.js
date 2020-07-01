@@ -45,6 +45,29 @@ class Navlinks extends React.Component{
 
   render(){
 
+    const homeLink = ()=>{
+      if(!localStorage.getItem('token'))
+      {
+        return(
+            <li class="nav-item"><Link to={"/"} class="nav-link">Home</Link></li>
+        )
+      }
+      else
+      {
+        if(localStorage.getItem('role') === "student")
+        {
+          return(
+              <li class="nav-item"><Link to={"/DashboardStudent/"} class="nav-link">Dashboard</Link></li>
+          )
+        }
+        else {
+          return(
+              <li class="nav-item"><Link to={"/DashboardProfessor/"} class="nav-link">Dashboard</Link></li>
+          )
+        }
+      }
+    }
+
       const usersessions =()=>{
 
               if(localStorage.getItem('token'))
@@ -70,9 +93,8 @@ class Navlinks extends React.Component{
       return(
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-              <li class="nav-item"><Link to={"/"} class="nav-link">Home</Link></li>
+              {homeLink()}
               <li class="nav-item"><Link to={"/"} class="nav-link">About</Link></li>
-              <li class="nav-item"><Link to={"/"} class="nav-link">Contact</Link></li>
               <li class="nav-item"><Link to={"/"} class="nav-link">Login</Link></li>
             </ul>
             {usersessions()}

@@ -47,18 +47,41 @@ class AppliedProjects extends React.Component {
 
   render(){
 
-    if( localStorage.getItem( 'token') == null){
-       return (
-         <Redirect
-           to={{
-             pathname : '/',
-             state :  {
-               error : "You need to login first"
-             }
-           }}
-           />
-       )
-    }
+
+        if( localStorage.getItem( 'token') === null){
+           return (
+             <Redirect
+               to={{
+                 pathname : '/',
+                 state :  {
+                   error : "You need to login first"
+                 }
+               }}
+               />
+           )
+        }
+        else{
+
+            if(localStorage.getItem('role') === "professor")
+            {
+              return(
+              <Redirect
+                to={{
+                  pathname : '/',
+                  state :  {
+                    error : "Not authorized"
+                  }
+                }}
+                />
+              )
+            }
+
+        }
+
+
+
+
+
 
     const isLoaded = this.state.isLoaded
 

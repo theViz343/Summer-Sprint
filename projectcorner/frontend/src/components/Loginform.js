@@ -61,7 +61,6 @@ class Loginform extends React.Component {
         localStorage.setItem('token',this.state.token)
         localStorage.setItem('username',this.state.username)
 
-
         let url2 ="http://127.0.0.1:8000/accounts/api/users/?username="+this.state.username
         fetch(url2, {headers: {
                Authorization: `JWT ${localStorage.getItem('token')}`
@@ -78,6 +77,15 @@ class Loginform extends React.Component {
               })
 
               localStorage.setItem('user_id',this.state.user_id)
+
+              if(this.state.is_student)
+              {
+                localStorage.setItem('role',"student")
+              }
+              else 
+              {
+                localStorage.setItem('role',"professor")
+              }
 
 
             }

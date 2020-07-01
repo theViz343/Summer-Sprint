@@ -41,19 +41,40 @@ class Closeproject extends React.Component {
   render(){
 
 
-    //redirect to login if not logged in
-    if( localStorage.getItem( 'token') == null){
-       return (
-         <Redirect
-           to={{
-             pathname : '/',
-             state :  {
-               error : "You need to login first"
-             }
-           }}
-           />
-       )
-    }
+        if( localStorage.getItem( 'token') === null){
+           return (
+             <Redirect
+               to={{
+                 pathname : '/',
+                 state :  {
+                   error : "You need to login first"
+                 }
+               }}
+               />
+           )
+        }
+        else{
+
+            if(localStorage.getItem('role') === "student")
+            {
+              return(
+              <Redirect
+                to={{
+                  pathname : '/',
+                  state :  {
+                    error : "Not authorized"
+                  }
+                }}
+                />
+              )
+            }
+
+        }
+
+
+
+
+
 
       const error_alert =()=>{
 

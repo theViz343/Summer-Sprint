@@ -72,7 +72,7 @@ class Addprojectform extends React.Component {
 
     render(){
 
-      if( localStorage.getItem( 'token') == null){
+      if( localStorage.getItem( 'token') === null){
          return (
            <Redirect
              to={{
@@ -83,6 +83,23 @@ class Addprojectform extends React.Component {
              }}
              />
          )
+      }
+      else{
+
+          if(localStorage.getItem('role') === "student")
+          {
+            return(
+            <Redirect
+              to={{
+                pathname : '/',
+                state :  {
+                  error : "Not authorized"
+                }
+              }}
+              />
+            )
+          }
+
       }
 
       const message_alert = () =>{
@@ -110,13 +127,13 @@ class Addprojectform extends React.Component {
             <form onSubmit={this.handleSubmit}>
 
               Title:
-              <input type="text" name="title" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="title" value={this.state.value} onChange={this.handleChange} required/>
               Description:
-              <input type="text" name="description" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="description" value={this.state.value} onChange={this.handleChange} required/>
               Tech Used:
-              <input type="text" name="tech_used" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="tech_used" value={this.state.value} onChange={this.handleChange} required/>
               Criterion:
-              <input type="text" name="criterion" value={this.state.value} onChange={this.handleChange} />
+              <input type="text" name="criterion" value={this.state.value} onChange={this.handleChange} required />
 
             <br/>
             <input class="btn btn-primary" type="submit" value="Add"/>
