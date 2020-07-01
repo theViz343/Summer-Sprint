@@ -3,6 +3,7 @@ import '../css/ApplicantDetails.css'
 import img_avatar from '../images/img_avatar.png'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
+import {Redirect} from 'react-router-dom';
 
 class ApplicantDetails extends React.Component {
   constructor(props){
@@ -87,6 +88,18 @@ class ApplicantDetails extends React.Component {
   }
 
   render(){
+    if( localStorage.getItem( 'token') === null){
+       return (
+         <Redirect
+           to={{
+             pathname : '/',
+             state :  {
+               error : "You need to login first"
+             }
+           }}
+           />
+       )
+    }
 
     return(
       <div>
@@ -140,7 +153,7 @@ class ApplicantDetails extends React.Component {
                 {!this.state.is_selected
                  ? <button class="btn btn-success" type="submit">Select</button>
                  :null
-               }
+                }
               </form>
             </div>
           </div>

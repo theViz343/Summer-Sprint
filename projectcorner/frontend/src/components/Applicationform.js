@@ -77,7 +77,7 @@ class Applicationform extends React.Component {
 
     render() {
 
-      if( localStorage.getItem( 'token') == null){
+      if( localStorage.getItem( 'token') === null){
          return (
            <Redirect
              to={{
@@ -89,6 +89,25 @@ class Applicationform extends React.Component {
              />
          )
       }
+      else{
+
+          if(localStorage.getItem('role') === "professor")
+          {
+            return(
+            <Redirect
+              to={{
+                pathname : '/',
+                state :  {
+                  error : "Not authorized"
+                }
+              }}
+              />
+            )
+          }
+
+      }
+
+
 
         const message_alert = () =>{
 
@@ -107,6 +126,7 @@ class Applicationform extends React.Component {
       return (
         <div>
         <Navigationbar />
+        <div class="container p-3">
         <div class="form-container">
           <div class="form-header">
             <h4>Enter Your Details</h4>
@@ -131,7 +151,7 @@ class Applicationform extends React.Component {
 
               Statement Of Purpose:
               <input type="text" name="statement_of_purpose" value={this.state.value} onChange={this.handleChange} required/>
-
+              <br/>
               Upload Resume  :
               <input type="file" name="resume" id="resume"
                 onChange = {this.handleResumeChange} required
@@ -139,11 +159,13 @@ class Applicationform extends React.Component {
 
 
             <br/>
+            <br/>
 
             <input class="btn btn-primary" value="Submit" type="submit"/>
             </form>
             <br/>
             {message_alert()}
+        </div>
         </div>
         </div>
 

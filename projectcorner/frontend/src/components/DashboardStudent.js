@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import Navigationbar from './Navigationbar';
 import Header from './Header';
 import '../css/Dashboard.css';
+import {Redirect} from 'react-router-dom';
 
 class DashboardStudent extends React.Component {
   constructor(props) {
@@ -14,6 +15,38 @@ class DashboardStudent extends React.Component {
 
   render()
   {
+
+    if( localStorage.getItem( 'token') === null){
+       return (
+         <Redirect
+           to={{
+             pathname : '/',
+             state :  {
+               error : "You need to login first"
+             }
+           }}
+           />
+       )
+    }
+    else{
+
+        if(localStorage.getItem('role') === "professor")
+        {
+          return(
+          <Redirect
+            to={{
+              pathname : '/',
+              state :  {
+                error : "Not authorized"
+              }
+            }}
+            />
+          )
+        }
+
+    }
+
+
     return(
       <div>
       <Navigationbar />

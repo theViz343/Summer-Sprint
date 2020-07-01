@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from  'react-router-dom';
-import Navigationbar from './Navigationbar'
+import Navigationbar from './Navigationbar';
+import {Redirect} from 'react-router-dom';
 
 export default class Deleteproject extends React.Component {
   constructor(props) {
@@ -23,6 +24,41 @@ export default class Deleteproject extends React.Component {
 
   render()
   {
+
+        if( localStorage.getItem( 'token') === null){
+           return (
+             <Redirect
+               to={{
+                 pathname : '/',
+                 state :  {
+                   error : "You need to login first"
+                 }
+               }}
+               />
+           )
+        }
+        else{
+
+            if(localStorage.getItem('role') === "student")
+            {
+              return(
+              <Redirect
+                to={{
+                  pathname : '/',
+                  state :  {
+                    error : "Not authorized"
+                  }
+                }}
+                />
+              )
+            }
+
+        }
+
+
+
+
+
 
         const error_alert =()=>{
 

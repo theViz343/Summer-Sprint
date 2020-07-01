@@ -43,7 +43,7 @@ class ContentsProfessor extends React.Component {
 
    render(){
 
-     if( localStorage.getItem( 'token') == null){
+     if( localStorage.getItem( 'token') === null){
         return (
           <Redirect
             to={{
@@ -55,6 +55,24 @@ class ContentsProfessor extends React.Component {
             />
         )
      }
+     else{
+
+         if(localStorage.getItem('role') === "student")
+         {
+           return(
+           <Redirect
+             to={{
+               pathname : '/',
+               state :  {
+                 error : "Not authorized"
+               }
+             }}
+             />
+           )
+         }
+
+     }
+
 
      const isLoaded = this.state.isLoaded
 
