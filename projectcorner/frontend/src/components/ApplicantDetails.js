@@ -63,24 +63,27 @@ class ApplicantDetails extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    let form_data = new FormData();
-    form_data.append('project_id',this.state.project_id)
-    form_data.append('student_id',this.state.student_id)
-    form_data.append('is_selected',!this.state.is_selected)
+    if(window.confirm("Do you want to proceed ?"))
+    {
+      let form_data = new FormData();
+      form_data.append('project_id',this.state.project_id)
+      form_data.append('student_id',this.state.student_id)
+      form_data.append('is_selected',!this.state.is_selected)
 
-    let url2 = `http://127.0.0.1:8000/projects/api/applications/${this.state.application_id}/`
-    fetch(url2, {
-      method: 'PATCH',
-      headers: {
-           Authorization: `JWT ${localStorage.getItem('token')}`,
-       },
-      body : form_data
-    })
-      .then(res => res.json())
-      .then(res => {
-        this.setState({is_selected : res.is_selected})
-      }
-      )
+      let url2 = `http://127.0.0.1:8000/projects/api/applications/${this.state.application_id}/`
+      fetch(url2, {
+        method: 'PATCH',
+        headers: {
+             Authorization: `JWT ${localStorage.getItem('token')}`,
+         },
+        body : form_data
+      })
+        .then(res => res.json())
+        .then(res => {
+          this.setState({is_selected : res.is_selected})
+        }
+        )
+    }
   }
 
   render(){
@@ -118,24 +121,30 @@ class ApplicantDetails extends React.Component {
               <p class="card-text"> {this.state.statment_of_purpose}</p>
             </div>
          </div>
-
-         <div class="container p-3">
-            <a href={this.state.resume} target="blank" class="btn btn-primary">View Resume</a>
-         </div>
-
-         <div>
+         <div class="container my-2">
            {this.state.is_selected
-            ? <h3 className="text-success">You have selected this student !</h3>
-            :  <h3 className="text-secondary">You have not selceted this student yet </h3>
+            ? <div class="alert alert-success">You have selected this student !</div>
+            :  <div class="alert alert-info">You have not selected this student yet </div>
             }
          </div>
-           <form onSubmit={this.handleSubmit} className="card">
-             {!this.state.is_selected
-             ? <input class="btn btn-primary" value="Select" type="submit"/>
-           : <input class="btn btn-danger" value="Reject" type="submit"/>
-            }
-           </form>
-
+         <div>
+            <div class="row">
+             <div class="col-sm-2">
+              <a href={this.state.resume} target="blank" class="btn btn-dark">View Resume</a>
+             </div>
+             <div class="col-sm-8">
+              {null}
+             </div>
+             <div class="col-sm-2">
+               <form onSubmit={this.handleSubmit}>
+                {!this.state.is_selected
+                 ? <button class="btn btn-success" type="submit">Select</button>
+                 :null
+               }
+              </form>
+            </div>
+          </div>
+         </div>
        </div>
       </div>
     )
