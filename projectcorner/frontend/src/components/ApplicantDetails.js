@@ -21,6 +21,7 @@ class ApplicantDetails extends React.Component {
       project_id : '',
       student_id : '',
       application_id:'',
+      resume:'',
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -52,6 +53,7 @@ class ApplicantDetails extends React.Component {
             project_id : result.project.id,
             student_id: result.student.user.id,
             is_selected: result.is_selected,
+            resume: result.resume,
           })
         },
       )
@@ -115,6 +117,10 @@ class ApplicantDetails extends React.Component {
              <div class="card-body">
               <p class="card-text"> {this.state.statment_of_purpose}</p>
             </div>
+         </div>
+
+         <div class="container p-3">
+            <a href={this.state.resume} target="blank" class="btn btn-primary">View Resume</a>
          </div>
 
          <div>
