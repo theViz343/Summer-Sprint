@@ -102,12 +102,12 @@ class ContentsApplicants extends React.Component {
             <div class="form-group">
             <label for="cars"><b>Filter:</b></label>
             <select class="form-control" id="cars" onChange={this.handleChange}>
-            <option value="none" selected disabled hidden>
-                Select an Option
-            </option>
-              <option value="all">All</option>
-              <option value="selected">Selected</option>
-              <option value="Not selected">Not Selected</option>
+              <option value="none" selected disabled hidden>
+                  Select an Option
+              </option>
+                <option value="all">All</option>
+                <option value="selected">Selected</option>
+                <option value="Not selected">Not Selected</option>
             </select>
           </div>
            <table class="table table-hover">
