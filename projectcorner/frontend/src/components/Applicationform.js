@@ -40,11 +40,6 @@ class Applicationform extends React.Component {
           let form_data = new FormData();
           form_data.append('project_id' , this.props.match.params.project_id)
           form_data.append("student_id" , localStorage.getItem('user_id'))
-          form_data.append('name' , this.state.name)
-          form_data.append('enrollment_id' , this.state.enrollment_id)
-          form_data.append('department' , this.state.department)
-          form_data.append('email_id' ,this.state.email_id )
-          form_data.append('cgpa' , this.state.cgpa)
           form_data.append('statement_of_purpose' , this.state.statement_of_purpose)
           form_data.append('is_selected' , false)
           form_data.append('resume' , this.state.resume , this.state.resume.name)
@@ -132,23 +127,6 @@ class Applicationform extends React.Component {
             <h4>Enter Your Details</h4>
           </div>
             <form onSubmit={this.handleSubmit}>
-
-              <div className = "form-group">
-              Name:
-              <input type="text" name="name" value={this.state.value} onChange={this.handleChange} required/>
-              </div>
-              Enrollment id:
-              <input type="text" name="enrollment_id" value={this.state.value} onChange={this.handleChange} required />
-
-              Department:
-              <input type="text" name="department" value={this.state.value} onChange={this.handleChange} required/>
-
-              Email id:
-              <input type="text" name="email_id" value={this.state.value} onChange={this.handleChange} required/>
-
-              CGPA:
-              <input type="text" name="cgpa" value={this.state.value} onChange={this.handleChange} required/>
-
               Statement Of Purpose:
               <input type="text" name="statement_of_purpose" value={this.state.value} onChange={this.handleChange} required/>
               <br/>

@@ -123,9 +123,9 @@ class ContentsApplicants extends React.Component {
          {this.state.items.map(item =>(
 
         <tr>
-          <td>{item.name}</td>
-          <td>{item.enrollment_id}</td>
-          <td>{item.department}</td>
+          <td>{item.student.user.username}</td>
+          <td>{item.student.enrollment_id}</td>
+          <td>{item.student.department}</td>
           <td><Link to={`/ApplicantDetails/${item.id}`} class="btn btn-dark">Details</Link></td>
         </tr>
        ))}

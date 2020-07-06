@@ -43,11 +43,11 @@ class ApplicantDetails extends React.Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            name:result.name,
-            enrollment_id:result.enrollment_id,
-            email:result.email_id,
-            department:result.department,
-            cgpa:result.cgpa,
+            name:result.student.user.username,
+            enrollment_id:result.student.enrollment_id,
+            email:result.student.user.email,
+            department:result.student.department,
+            cgpa:result.student.cgpa,
             statment_of_purpose:result.statement_of_purpose,
             project_title:result.project.title,
             phone:result.student.phone_number,
@@ -88,7 +88,6 @@ class ApplicantDetails extends React.Component {
   }
 
   render(){
-    const user_role = localStorage.getItem('role')
     if( localStorage.getItem( 'token') === null){
        return (
          <Redirect
@@ -135,15 +134,12 @@ class ApplicantDetails extends React.Component {
               <p class="card-text"> {this.state.statment_of_purpose}</p>
             </div>
          </div>
-         {user_role === 'professor' ?
          <div class="container my-2">
            {this.state.is_selected
             ? <div class="alert alert-success">You have selected this student !</div>
             :  <div class="alert alert-info">You have not selected this student yet </div>
             }
          </div>
-          :<div></div>
-          }
          <div>
             <div class="row">
              <div class="col-sm-2">
@@ -152,7 +148,6 @@ class ApplicantDetails extends React.Component {
              <div class="col-sm-8">
               {null}
              </div>
-             { user_role === 'professor' ?
              <div class="col-sm-2">
                <form onSubmit={this.handleSubmit}>
                 {!this.state.is_selected
@@ -161,8 +156,6 @@ class ApplicantDetails extends React.Component {
                 }
               </form>
             </div>
-            : <div></div>
-            }
           </div>
          </div>
        </div>
