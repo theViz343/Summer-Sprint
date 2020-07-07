@@ -1,9 +1,9 @@
 import React from 'react'
 import '../css/Contents.css'
 import Header from './Header'
-import Routes from './Routes'
 import {Link , Redirect} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
+import {PROJECT_ROUTE} from '../Api.js'
 
 class ContentsProfessor extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class ContentsProfessor extends React.Component {
    fetchdata(){
 
      var that = this
-     let url2 ="http://127.0.0.1:8000/projects/api/projects/?professor_id="+localStorage.getItem('user_id')
+     let url2 =`${PROJECT_ROUTE}?professor_id=${localStorage.getItem('user_id')}`
      fetch(url2, {headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
 

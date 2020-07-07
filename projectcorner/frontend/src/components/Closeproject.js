@@ -1,6 +1,7 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import Navigationbar from './Navigationbar';
+import {PROJECT_ROUTE} from '../Api.js'
 
 
 class Closeproject extends React.Component {
@@ -16,7 +17,7 @@ class Closeproject extends React.Component {
 
   componentDidMount(){
 
-        fetch(`http://localhost:8000/projects/api/projects/${this.props.match.params.project_id}/`, {
+        fetch(`${PROJECT_ROUTE}${this.props.match.params.project_id}/`, {
         method: 'PATCH',
         headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`,
@@ -80,7 +81,7 @@ class Closeproject extends React.Component {
 
           if(this.state.done)
           {
-                if(this.props.match.params.status == "true")
+                if(this.props.match.params.status === "true")
                 {
                   return(<div class="alert alert-success">Project is Now open</div>)
                 }

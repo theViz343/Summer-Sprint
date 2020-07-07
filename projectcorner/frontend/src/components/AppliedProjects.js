@@ -4,6 +4,8 @@ import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Header from './Header';
+import {APPLICATION_ROUTE} from '../Api.js'
+
 
 
 class AppliedProjects extends React.Component {
@@ -25,7 +27,7 @@ class AppliedProjects extends React.Component {
     }
 
     var that = this
-    let url = 'http://localhost:8000/projects/api/applications/?student_id='+user_id;
+    let url = `${APPLICATION_ROUTE}?student_id=${user_id}`;
     fetch(url ,{headers: {
       Authorization: `JWT ${localStorage.getItem('token')}`
     }} )
@@ -41,7 +43,7 @@ class AppliedProjects extends React.Component {
 
 
     }).catch(e=>{
-      //kya pata kya likhna hai
+
     })
   }
 

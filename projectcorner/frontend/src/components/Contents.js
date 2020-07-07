@@ -4,6 +4,7 @@ import Header from './Header'
 import {Link} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
+import {PROJECT_ROUTE, APPLICATION_ROUTE} from '../Api.js'
 
 class Contents extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Contents extends React.Component {
        user_id = localStorage.getItem('user_id');
      }
 
-     let url2 ="http://127.0.0.1:8000/projects/api/projects/"
+     let url2 =`${PROJECT_ROUTE}`
      var that = this
      fetch(url2,{headers: {
             Authorization: `JWT ${localStorage.getItem('token')}`
@@ -50,7 +51,7 @@ class Contents extends React.Component {
 
        })
 
-       let url = 'http://localhost:8000/projects/api/applications/?student_id='+user_id;
+       let url = `${APPLICATION_ROUTE}?student_id=${user_id}`;
        fetch(url ,{headers: {
          Authorization: `JWT ${localStorage.getItem('token')}`
        }} )
@@ -62,7 +63,7 @@ class Contents extends React.Component {
            isLoadedapp: true,
          })
        }).catch(e=>{
-         //kya pata kya likhna hai
+
        })
 
 

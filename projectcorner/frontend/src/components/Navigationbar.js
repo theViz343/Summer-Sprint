@@ -1,7 +1,6 @@
 import React from 'react'
 import '../css/Navigationbar.css'
-import { Switch, Route, Link} from "react-router-dom";
-import Routes from './Routes'
+import {Link} from "react-router-dom";
 
 class Navbrand extends React.Component {
   constructor(props) {

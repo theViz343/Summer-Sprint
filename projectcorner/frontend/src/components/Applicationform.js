@@ -2,6 +2,8 @@ import React from 'react'
 import '../css/Loginform.css'
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
+import {APPLICATION_ROUTE} from '../Api.js'
+
 
 class Applicationform extends React.Component {
 
@@ -44,7 +46,7 @@ class Applicationform extends React.Component {
           form_data.append('is_selected' , false)
           form_data.append('resume' , this.state.resume , this.state.resume.name)
 
-          fetch('http://localhost:8000/projects/api/applications/', {
+          fetch(`${APPLICATION_ROUTE}`, {
             method: 'POST',
             headers: {
               Authorization: `JWT ${localStorage.getItem('token')}`,
@@ -59,7 +61,7 @@ class Applicationform extends React.Component {
                     applied:true
                   });
                 }
-                else if(json.detail == "You do not have permission to perform this action.")
+                else if(json.detail === "You do not have permission to perform this action.")
                 {
                   this.setState({
                     error : 'you are not authorized for this action'

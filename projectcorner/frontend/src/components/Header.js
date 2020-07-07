@@ -2,10 +2,6 @@ import React from 'react';
 import '../css/Header.css';
 
 class Header extends React.Component{
-  constructor(props) {
-    super(props)
-  }
-
   render(){
     return(
       <div id="header">
@@ -13,7 +9,6 @@ class Header extends React.Component{
       </div>
     )
   }
-
 }
 
 

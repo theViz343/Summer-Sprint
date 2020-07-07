@@ -2,13 +2,13 @@ import React from 'react'
 import '../css/Loginform.css'
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
+import {PROJECT_ROUTE} from '../Api.js'
 
 class Addprojectform extends React.Component {
 
   constructor(props) {
     super(props)
     this.state={
-
       title: "",
       description: "",
       tech_used: "",
@@ -27,13 +27,11 @@ class Addprojectform extends React.Component {
     handleSubmit(event) {
       event.preventDefault();
         this.setState({value:''})
-      fetch('http://localhost:8000/projects/api/projects/', {
+      fetch(`${PROJECT_ROUTE}`, {
       method: 'POST',
       headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json',
-
-
       },
       body:JSON.stringify( {
 
@@ -47,7 +45,7 @@ class Addprojectform extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-        if(json.detail == null)
+        if(json.detail === null)
         {
           this.setState({
 
@@ -58,7 +56,7 @@ class Addprojectform extends React.Component {
             added:true,
           });
         }
-        else if(json.detail == "You do not have permission to perform this action.")
+        else if(json.detail === "You do not have permission to perform this action.")
         {
           this.setState({
             error : "you are not authorized for this"

@@ -3,6 +3,9 @@ import '../css/Contents.css'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
 import {Redirect,Link}  from 'react-router-dom';
+import {APPLICATION_ROUTE} from '../Api.js'
+
+
 class ContentsApplicants extends React.Component {
   constructor(props) {
     super(props)
@@ -33,7 +36,7 @@ class ContentsApplicants extends React.Component {
 
     this.setState({isLoaded:false})
     var that = this;
-    let url2 = `http://127.0.0.1:8000/projects/api/applications/?project_id=${this.props.match.params.project_id}&status=${status}`
+    let url2 = `${APPLICATION_ROUTE}?project_id=${this.props.match.params.project_id}&status=${status}`
     fetch(url2, {headers: {
            Authorization: `JWT ${localStorage.getItem('token')}`
        }})

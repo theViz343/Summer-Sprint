@@ -3,6 +3,7 @@ import Header from './Header'
 import Navigationbar from './Navigationbar'
 import img_project from '../images/img_project.png'
 import {Redirect} from 'react-router-dom';
+import {PROJECT_ROUTE} from '../Api.js'
 
 
 class ProjectDetails extends React.Component {
@@ -27,7 +28,7 @@ class ProjectDetails extends React.Component {
 
   fetchdata(){
 
-    let url2 = `http://127.0.0.1:8000/projects/api/projects/${this.props.match.params.project_id}/`
+    let url2 = `${PROJECT_ROUTE}${this.props.match.params.project_id}/`
     fetch(url2, {headers: {
            Authorization: `JWT ${localStorage.getItem('token')}`
        }})

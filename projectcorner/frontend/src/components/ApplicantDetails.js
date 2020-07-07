@@ -4,6 +4,8 @@ import img_avatar from '../images/img_avatar.png'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
+import {APPLICATION_ROUTE} from '../Api.js'
+
 
 class ApplicantDetails extends React.Component {
   constructor(props){
@@ -34,7 +36,7 @@ class ApplicantDetails extends React.Component {
 
   fetchdata(){
     this.setState({application_id :this.props.match.params.application_id })
-    let url2 = `http://127.0.0.1:8000/projects/api/applications/${this.props.match.params.application_id}/`
+    let url2 = `${APPLICATION_ROUTE}${this.props.match.params.application_id}/`
     fetch(url2, {headers: {
            Authorization: `JWT ${localStorage.getItem('token')}`
        }})

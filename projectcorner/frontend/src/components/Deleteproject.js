@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from  'react-router-dom';
 import Navigationbar from './Navigationbar';
 import {Redirect} from 'react-router-dom';
+import {PROJECT_ROUTE} from '../Api.js'
 
 export default class Deleteproject extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class Deleteproject extends React.Component {
 
   componentDidMount(){
 
-    fetch(`http://localhost:8000/projects/api/projects/${this.props.match.params.project_id}/`, {
+    fetch(`${PROJECT_ROUTE}${this.props.match.params.project_id}/`, {
         method: 'DELETE',
         headers: {
           Authorization: `JWT ${localStorage.getItem('token')}`

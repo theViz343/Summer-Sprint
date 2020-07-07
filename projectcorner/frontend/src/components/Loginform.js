@@ -1,8 +1,8 @@
 import React from 'react'
 import '../css/Loginform.css';
 import {Redirect} from 'react-router-dom'
-import Routes from './Routes'
 import Navigationbar from './Navigationbar'
+import {AUTHORIZATION_ROUTES,USERS_ROUTES} from '../Api.js'
 
 
 class Loginform extends React.Component {
@@ -39,7 +39,7 @@ class Loginform extends React.Component {
 
   handleSubmit(event) {
 
-    fetch('http://localhost:8000/auth-token/', {
+    fetch(`${AUTHORIZATION_ROUTES}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ class Loginform extends React.Component {
         localStorage.setItem('token',this.state.token)
         localStorage.setItem('username',this.state.username)
 
-        let url2 ="http://127.0.0.1:8000/accounts/api/users/?username="+this.state.username
+        let url2 =`${USERS_ROUTES}?username=${this.state.username}`
         fetch(url2, {headers: {
                Authorization: `JWT ${localStorage.getItem('token')}`
            }})
@@ -82,7 +82,7 @@ class Loginform extends React.Component {
               {
                 localStorage.setItem('role',"student")
               }
-              else 
+              else
               {
                 localStorage.setItem('role',"professor")
               }
