@@ -5,12 +5,51 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from accounts.serializers import UserSerializer,ProfessorSerializer,StudentSerializer
 from django.contrib.auth import get_user_model
+from taggit_serializer.serializers import (TagListSerializerField,
+                                           TaggitSerializer)
+from taggit.models import Tag
+import six
+
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model  = Tag
+        fields = ('id','name')
+
+class NewTagListSerializerField(TagListSerializerField):
+    def to_internal_value(self, value):
+        if isinstance(value, six.string_types):
+            value = value.split(',')
+
+        if not isinstance(value, list):
+            self.fail('not_a_list', input_type=type(value).__name__)
+
+        for s in value:
+            if not isinstance(s, six.string_types):
+                self.fail('not_a_str')
+
+            self.child.run_validation(s)
+        return value
+
 
 
 class ProjectSerializer(serializers.ModelSerializer):
 
     professor = ProfessorSerializer(read_only=True)
     professor_id = serializers.PrimaryKeyRelatedField(queryset = Professor.objects.all(), source='professor', write_only=True)
+    tech_used=NewTagListSerializerField()
+
+    def create(self,validated_data):
+        tech_used = validated_data.pop('tech_used')
+        instance = super(ProjectSerializer,self).create(validated_data)
+        instance.tech_used.set(*tech_used)
+        return instance
+    def update(self,instance ,validated_data):
+        tech_used = validated_data.pop('tech_used')
+        instance = super(ProjectSerializer,self).update(instance,validated_data)
+        instance.tech_used.set(*tech_used)
+        return instance
 
     class Meta:
         model = Project

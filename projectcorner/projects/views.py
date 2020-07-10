@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Application,Project
-from .serializers import ApplicationSerializer,ProjectSerializer
+from .serializers import ApplicationSerializer,ProjectSerializer,TagSerializer
 from rest_framework.permissions import BasePermission ,IsAuthenticated
 from rest_framework.parsers import FormParser , MultiPartParser
-
+from taggit.models import Tag
 
 class IsTeacher(BasePermission):
     def has_permission(self,request,view):
@@ -21,6 +21,12 @@ class IsStudent(BasePermission):
             return False
 
 
+class TechListViewSet(viewsets.ModelViewSet):
+    serializer_class = TagSerializer
+
+    def get_queryset(self):
+        queryset = Tag.objects.all()
+        return queryset
 
 
 class ApplicationViewSet(viewsets.ModelViewSet):
