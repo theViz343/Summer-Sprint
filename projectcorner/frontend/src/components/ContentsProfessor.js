@@ -3,7 +3,7 @@ import '../css/Contents.css'
 import Header from './Header'
 import {Link , Redirect} from 'react-router-dom'
 import Navigationbar from './Navigationbar'
-import {PROJECT_ROUTE} from '../Api.js'
+import {PROJECT_ROUTE,PROJECT_OPEN,PROJECT_CLOSED} from '../Api.js'
 
 class ContentsProfessor extends React.Component {
   constructor(props) {
@@ -91,13 +91,11 @@ class ContentsProfessor extends React.Component {
                 <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
                 <br/>
                 <Link to={`/ContentsApplicants/${item.id}`} class="btn btn-primary">See Applicants</Link>
-                {item.is_open?<Link to={`/Closeproject/${item.id}/${!item.is_open}`} class="btn btn-warning">Close</Link>:
-                <Link to={`/Closeproject/${item.id}/${!item.is_open}`} class="btn btn-success">Open</Link>
+                {item.project_status.id===PROJECT_OPEN?<Link to={`/Closeproject/${item.id}/${PROJECT_CLOSED}`} class="btn btn-warning">Close</Link>:
+                <Link to={`/Closeproject/${item.id}/${PROJECT_OPEN}`} class="btn btn-success">Open{item.project_status.id}</Link>
                 }
                 <Link to={`/Deleteproject/${item.id}`} class="btn btn-danger float-right">Delete</Link>
-
               </div>
-
             </div>
        ))}
      </div>

@@ -4,7 +4,7 @@ import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import Header from './Header';
-import {APPLICATION_ROUTE} from '../Api.js'
+import {APPLICATION_ROUTE,APPLICATION_SELECTED,APPLICATION_NOT_SELECTED} from '../Api.js'
 
 
 
@@ -102,7 +102,7 @@ class AppliedProjects extends React.Component {
                <div className="card-text"><b>Criterion: </b>{item.project.criterion}</div>
                <br/>
                <div>
-               {item.is_selected
+               {item.application_status.id === APPLICATION_SELECTED
                  ? <div className="text-success">Congratulations you are selected</div>
                  : <div className="text-danger">Applying on more projects may improve your chance</div>
                }

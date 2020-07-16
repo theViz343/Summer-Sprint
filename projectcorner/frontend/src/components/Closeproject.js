@@ -24,7 +24,7 @@ class Closeproject extends React.Component {
           'Content-Type': 'application/json',
         },
         body:JSON.stringify( {
-                    "is_open":this.props.match.params.status ,
+                    "project_status_id":`${this.props.match.params.status}`,
               }),
       })
         .then(res => res.json())

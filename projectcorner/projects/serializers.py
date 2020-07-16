@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Application,Project
+from .models import Application,Project,Applicationstatus,Projectstatus
 from accounts.models import Professor,Student
 from django.contrib.auth.models import User
 from django.conf import settings
 from accounts.serializers import UserSerializer,ProfessorSerializer,StudentSerializer
 from django.contrib.auth import get_user_model
-from taggit_serializer.serializers import (TagListSerializerField,
-                                           TaggitSerializer)
+from taggit_serializer.serializers import (TagListSerializerField,TaggitSerializer)
 from taggit.models import Tag
 import six
+
 
 
 
@@ -33,11 +33,22 @@ class NewTagListSerializerField(TagListSerializerField):
         return value
 
 
+class ProjectstatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Projectstatus
+        fields = '__all__'
+
+class ApplicationstatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Applicationstatus
+        fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
 
     professor = ProfessorSerializer(read_only=True)
+    project_status = ProjectstatusSerializer(read_only=True)
     professor_id = serializers.PrimaryKeyRelatedField(queryset = Professor.objects.all(), source='professor', write_only=True)
+    project_status_id =  serializers.PrimaryKeyRelatedField(queryset = Projectstatus.objects.all(), source='project_status', write_only=True)
     tech_used=NewTagListSerializerField()
 
     def create(self,validated_data):
@@ -59,8 +70,10 @@ class ApplicationSerializer(serializers.ModelSerializer):
 
     project = ProjectSerializer(read_only=True)
     student = StudentSerializer(read_only=True)
+    application_status = ApplicationstatusSerializer(read_only=True)
     project_id = serializers.PrimaryKeyRelatedField(queryset = Project.objects.all(), source='project', write_only=True)
     student_id = serializers.PrimaryKeyRelatedField(queryset = Student.objects.all(), source='student', write_only=True)
+    application_status_id = serializers.PrimaryKeyRelatedField(queryset = Applicationstatus.objects.all(), source='application_status', write_only=True)
 
     class Meta:
         model = Application

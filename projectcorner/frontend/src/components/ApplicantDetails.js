@@ -4,7 +4,7 @@ import img_avatar from '../images/img_avatar.png'
 import Header from './Header'
 import Navigationbar from './Navigationbar'
 import {Redirect} from 'react-router-dom';
-import {APPLICATION_ROUTE} from '../Api.js'
+import {APPLICATION_ROUTE,APPLICATION_SELECTED,APPLICATION_NOT_SELECTED} from '../Api.js'
 
 
 class ApplicantDetails extends React.Component {
@@ -20,7 +20,7 @@ class ApplicantDetails extends React.Component {
       statment_of_purpose:"",
       project_title:"",
       phone:"",
-      is_selected:'',
+      status:APPLICATION_NOT_SELECTED,
       project_id : '',
       student_id : '',
       application_id:'',
@@ -55,7 +55,7 @@ class ApplicantDetails extends React.Component {
             phone:result.student.phone_number,
             project_id : result.project.id,
             student_id: result.student.user.id,
-            is_selected: result.is_selected,
+            status: result.application_status.id,
             resume: result.resume,
           })
         },
@@ -71,7 +71,7 @@ class ApplicantDetails extends React.Component {
       let form_data = new FormData();
       form_data.append('project_id',this.state.project_id)
       form_data.append('student_id',this.state.student_id)
-      form_data.append('is_selected',!this.state.is_selected)
+      form_data.append('application_status_id',APPLICATION_SELECTED)
 
       let url2 = `http://127.0.0.1:8000/projects/api/applications/${this.state.application_id}/`
       fetch(url2, {
@@ -83,13 +83,14 @@ class ApplicantDetails extends React.Component {
       })
         .then(res => res.json())
         .then(res => {
-          this.setState({is_selected : res.is_selected})
+          this.setState({status : APPLICATION_SELECTED})
         }
         )
     }
   }
 
   render(){
+    
     if( localStorage.getItem( 'token') === null){
        return (
          <Redirect
@@ -136,8 +137,9 @@ class ApplicantDetails extends React.Component {
               <p class="card-text"> {this.state.statment_of_purpose}</p>
             </div>
          </div>
+
          <div class="container my-2">
-           {this.state.is_selected
+           {this.state.status === APPLICATION_SELECTED
             ? <div class="alert alert-success">You have selected this student !</div>
             :  <div class="alert alert-info">You have not selected this student yet </div>
             }
@@ -152,12 +154,14 @@ class ApplicantDetails extends React.Component {
              </div>
              <div class="col-sm-2">
                <form onSubmit={this.handleSubmit}>
-                {!this.state.is_selected
+                {this.state.status === APPLICATION_NOT_SELECTED
                  ? <button class="btn btn-success" type="submit">Select</button>
                  :null
                 }
               </form>
             </div>
+            <div></div>
+
           </div>
          </div>
        </div>

@@ -59,9 +59,9 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             if status == "all":
                 queryset = queryset.filter(project__pk=project_id).order_by('-pk')
             elif status == "selected" :
-                queryset = queryset.filter(is_selected=True).filter(project__pk=project_id).order_by('-pk')
+                queryset = queryset.filter(application_status__pk=1).filter(project__pk=project_id).order_by('-pk')
             else :
-                queryset = queryset.filter(is_selected=False).filter(project__pk=project_id).order_by('-pk')
+                queryset = queryset.filter(application_status__pk=2).filter(project__pk=project_id).order_by('-pk')
 
         return queryset
 

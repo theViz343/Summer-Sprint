@@ -60,16 +60,17 @@ class Addprojectform extends React.Component {
       body:JSON.stringify( {
 
                   "professor_id": localStorage.getItem('user_id'),
+                  "project_status_id" : "1",
                   "title": this.state.title,
                   "description": this.state.description,
                   "tech_used": this.state.selected_techs,
                   "criterion": this.state.criterion,
-                  "is_open": this.state.is_open,
+
             }),
     })
       .then(res => res.json())
       .then(json => {
-        if(json.detail === null)
+        if(json.detail == null)
         {
           this.setState({
 
@@ -91,7 +92,7 @@ class Addprojectform extends React.Component {
       )
 
 	}
-	
+
 	handleTechSelect(e){
 		var options = e.target.options
 		var value = []
@@ -101,7 +102,7 @@ class Addprojectform extends React.Component {
 			}
 		}
 		this.setState({selected_techs : value})
-		
+
 	}
 
     render(){
@@ -148,7 +149,7 @@ class Addprojectform extends React.Component {
           }
 
       }
-	  
+
 
       return (
         <div>
@@ -166,7 +167,7 @@ class Addprojectform extends React.Component {
               <input type="text" name="description" value={this.state.value} onChange={this.handleChange} required/>
               Tech Used:
               {/* <input type="text" name="tech_used" value={this.state.value} onChange={this.handleChange} required/> */}
-			  <select className = "selectpicker" multiple={true} value={this.state.selected_techs} 
+			  <select className = "selectpicker" multiple={true} value={this.state.selected_techs}
 			  		onChange={this.handleTechSelect}>
 				{this.state.all_techs.map(tech => <option key={tech.value} value={tech.value}>{tech.display}</option>)}
 			  </select><br/>
@@ -180,10 +181,10 @@ class Addprojectform extends React.Component {
           <br />
           <div>{message_alert()}</div>
           </div>
-	
+
         </div>
 
-		
+
             )
 
 

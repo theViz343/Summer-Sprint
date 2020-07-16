@@ -106,7 +106,7 @@ class Contents extends React.Component {
                 <p class="card-text"><b>Criterion: </b>{item.criterion}</p>
                 <div>
                   {
-                    item.is_open?(
+                    item.project_status.id=="1"?(
                       this.state.applied_items.includes(item.id) ? <div class="btn btn-secondary">Applied</div>
                       :<Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>
                     )
