@@ -21,7 +21,7 @@ class Footer extends React.Component {
 
           <div class="col-xs-12 col-sm-4 col-md-3">
               <a href="http://studentportal.vnit.ac.in">
-                  <img class="logo" style={{borderRadius: '4px'}} src="{% static 'IMAGES/logo-large.jpeg' %}" alt="logo" width="140" />
+                  <img class="logo" style={{borderRadius: '4px'}} src="" alt="logo" width="140" />
               </a>
               <p>A platform that provides insight into the college life at VNIT.</p>
           </div>
