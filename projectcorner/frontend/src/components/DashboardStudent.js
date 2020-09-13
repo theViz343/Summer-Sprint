@@ -50,32 +50,29 @@ class DashboardStudent extends React.Component {
     return(
       <div>
       <Navigationbar />
+      <Header content="Projects Corner" />
         <div class="container">
-        <Header content="Welcome" />
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card dashboard-card">
-                <div class="card-body">
-                  <h4 class="card-title">My Applications</h4>
-                  <p class="card-text">track all your current applications</p>
-                  <Link to={"/applied_projects/"} class="btn btn-info dashboard-button">
-                      <i class="fa fa-clone fa-dashboard-custom"></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card dashboard-card">
-                <div class="card-body">
-                  <h4 class="card-title">All Projects</h4>
-                  <p class="card-text">View all the available projects</p>
-                  <Link to={"/Contents/"} class="btn btn-info dashboard-button">
-                    <i class="fa fa-list-ul fa-dashboard-custom"></i>
-                  </Link>
-                </div>
-              </div>
-            </div>
+        <div className="row" style={{ 'margin-top': '5rem'}}>
+        <div className="col-sm-6">
+          <div className="home-card">
+            <h3>My Applications</h3>
+            <p>Student Portal provides you the interview experiences of past students, the various companies that have come and the packages that they have offered and many more, that will definitely increase your chances at grabbing the best opportunities that you are presented with.</p>
+            <Link to={"/applied_projects/"}>
+            <button className="stupo-btn-dark" onclick="location.href='/experiences'">Review</button>
+            </Link>
           </div>
+        </div>
+        <div className="col-sm-6">
+          <div className="home-card">
+            <h3>All Projects</h3>
+            <p>Student Portal guarantees to bring all these clubs to you by presenting all of its events, important dates and announcements and keeping you up to date with the happenings in the college.</p>
+            <Link to={"/Contents/"}>
+            <button className="stupo-btn-dark">Check Now</button>
+            </Link>
+            {/* <a href="/clubs"><div><img style={{width: '100%'}} src="{% static 'IMAGES/clubs.png' %}" alt="" /></div></a> */}
+          </div>
+        </div>
+      </div>
         </div>
       </div>
     )

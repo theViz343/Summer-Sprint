@@ -91,29 +91,51 @@ class AppliedProjects extends React.Component {
     return (
       <div>
        <Navigationbar />
+       <Header content="Applications"/>
       <div className="container">
-      <Header content="Applications"/>
+
+
 
       {this.state.applied_list.map(item =>(
-          <div className="card" id="card" >
-             <div className="card-body">
-               <h4 className="card-title" id="card-title">{item.project.title}</h4>
-               <p className="card-text"><b>Technologies used: </b>{item.project.tech_used}</p>
-               <div className="card-text"><b>Criterion: </b>{item.project.criterion}</div>
-               <br/>
-               <div>
-               {item.application_status.id === APPLICATION_SELECTED
-                 ? <div className="text-success">Congratulations you are selected</div>
-                 : <div className="text-danger">Applying on more projects may improve your chance</div>
-               }
-                 <Link to={`/ProjectDetails/${item.project.id}`} class="btn btn-dark float-right">View Project</Link>
-                <Link to={`/ApplicantDetails/${item.id}`} class="btn btn-info float-right">View Application</Link>
-              </div>
-             </div>
-           </div>
+          <table className="table table-hover">
+        <tbody>
+          <tr>
+            <td id="linkdata">
+              <article id className="post-137294 post type-post status-publish format-standard hentry category-interview-experiences tag-amazon">
+                <header className="entry-header">
+                <Link to={`/ApplicantDetails/${item.project.id}`} >
+                  <h2 className="entry-title">
+                    {item.project.title}
+                    &nbsp;
+                  </h2>
+                  </Link>
+                </header>
+                {/* entry-header */}
+                <div className="entry-summary">
+                  {/* Ico nic One home page thumbnail with custom excerpt */}
+                  <div className="excerpt-thumb">
+                  </div>
+                  <p>Technologies used:{item.project.tech_used}</p>
+                  <p>Criteria:{item.project.criterion}</p>
+                </div>
+                <div>
+                  <Link to={`/ProjectDetails/${item.id}`} class="float-right">
+                  <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Details</button>
+                  </Link>
+                  <Link to={`/ApplicantDetails/${item.id}`}>
+                  <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">View Application</button>
+                  </Link>
+                </div>
+              </article>{/* #post */}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       ))}
 
-    {isLoaded?<Link to={"/Contents/"} className="text-center font-weight-bold">Apply on more projects</Link>:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
+    {isLoaded?<Link to={"/Contents/"} className="text-center font-weight-bold">
+    <button type="button" id style={{marginBottom: '3rem'}} className="stupo-btn-dark-nohover">Apply on more projects</button>
+    </Link>:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
 
     </div>
     </div>

@@ -107,10 +107,10 @@ class ApplicantDetails extends React.Component {
     return(
       <div>
       <Navigationbar/>
+      <Header content="Applicant Details"/>
       <div class="container">
-        <Header content="Applicant Details"/>
-       <div class="card" id="applicant_container">
-         <h4 class="card-header bg-secondary">Applicant Information</h4>
+       <div class="card" id="applicant_container" style={{'margin': '3rem 0'}}>
+         <section class="project-info-header">Applicant Information</section>
         <div class="card-body">
         <div class="row">
 
@@ -118,21 +118,21 @@ class ApplicantDetails extends React.Component {
             <img src={img_avatar} alt="Avatar" id="applicant_img"/>
           </div>
           <div class="col-sm-5">
-             <p class="cart-text"><b>Enrollment Id :</b>{this.state.enrollment_id} </p>
-             <p class="cart-text"><b>Name :</b> {this.state.name}</p>
-             <p class="cart-text"><b>Project :</b>{this.state.project_title} </p>
+             <p class="cart-text"><b className="project-details">Enrollment Id :</b>{this.state.enrollment_id} </p>
+             <p class="cart-text"><b className="project-details">Name :</b> {this.state.name}</p>
+             <p class="cart-text"><b className="project-details">Project :</b>{this.state.project_title} </p>
            </div>
            <div class="col-sm-5">
-              <p class="cart-text"><b>Department :</b>{this.state.department}</p>
-              <p class="cart-text"><b>Email :</b> {this.state.email}</p>
-              <p class="cart-text"><b>Mobile no :</b>{this.state.phone}</p>
+              <p class="cart-text"><b className="project-details">Department :</b>{this.state.department}</p>
+              <p class="cart-text"><b className="project-details">Email :</b> {this.state.email}</p>
+              <p class="cart-text"><b className="project-details">Mobile no :</b>{this.state.phone}</p>
             </div>
         </div>
         </div>
       </div>
 
-         <div class="card" id="statement_container">
-             <h4 class="card-header bg-secondary">Statement Of Purpose</h4>
+         <div class="card" id="statement_container" style={{'margin': '3rem 0'}}>
+         <section class="project-info-header">Statement Of Purpose</section>
              <div class="card-body">
               <p class="card-text"> {this.state.statment_of_purpose}</p>
             </div>

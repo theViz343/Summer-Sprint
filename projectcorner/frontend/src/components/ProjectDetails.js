@@ -67,10 +67,10 @@ class ProjectDetails extends React.Component {
     return(
       <div>
       <Navigationbar/>
+      <Header content="Project Details"/>
       <div class="container">
-        <Header content="Project Details"/>
-       <div class="card" id="applicant_container">
-         <h4 class="card-header bg-secondary">Project Information</h4>
+       <div class="card" id="applicant_container" style={{'margin': '3rem 0'}}>
+       <section class="project-info-header">{this.state.title}</section>
         <div class="card-body">
         <div class="row">
 
@@ -78,21 +78,20 @@ class ProjectDetails extends React.Component {
             <img src={img_project} alt="Avatar" id="applicant_img"/>
           </div>
           <div class="col-sm-5">
-             <p class="cart-text"><b>Title :</b>{this.state.title} </p>
-             <p class="cart-text"><b>Tech used :</b> {this.state.tech_used}</p>
-             <p class="cart-text"><b>Criterion :</b>{this.state.criterion} </p>
-           </div>
-           <div class="col-sm-5">
-              <p class="cart-text"><b>Posted-by :</b>{this.state.posted_by}</p>
-              <p class="cart-text"><b>Department :</b> {this.state.department}</p>
-              <p class="cart-text"><b>Email :</b>{this.state.email}</p>
-            </div>
+             <p class="cart-text"><b className="project-details">Tech used :</b> {this.state.tech_used}</p>
+             <p class="cart-text"><b className="project-details">Criterion :</b>{this.state.criterion} </p>
+          </div>
+          <div class="col-sm-5">
+              <p class="cart-text"><b className="project-details">Posted by :</b>{this.state.posted_by}</p>
+              <p class="cart-text"><b className="project-details">Department :</b> {this.state.department}</p>
+              <p class="cart-text"><b className="project-details">Email :</b>{this.state.email}</p>
+          </div>
         </div>
         </div>
       </div>
 
-         <div class="card" id="statement_container">
-             <h4 class="card-header bg-secondary">Description</h4>
+         <div class="card" id="statement_container" style={{'margin': '3rem 0'}}>
+             <section class="project-info-header">Description</section>
              <div class="card-body">
               <p class="card-text"> {this.state.description}</p>
             </div>

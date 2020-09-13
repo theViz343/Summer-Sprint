@@ -95,28 +95,59 @@ class Contents extends React.Component {
 
        <div>
         <Navigationbar />
+        <Header content="All Projects" />
        <div class="container">
-       <Header content="project" />
+
+
+
+
+
+
+
       {isLoaded?null:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
        {this.state.items.map(item =>(
-           <div class="card" id="card">
-              <div class="card-body">
-                <h4 class="card-title" id="card-title">{item.title}</h4>
-                <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
-                <p class="card-text"><b>Criterion: </b>{item.criterion}</p>
+           <table className="table table-hover">
+        <tbody>
+          <tr>
+            <td id="linkdata">
+              <article id className="post-137294 post type-post status-publish format-standard hentry category-interview-experiences tag-amazon">
+                <header className="entry-header">
+                <Link to={`/ProjectDetails/${item.id}`} >
+                  <h2 className="entry-title">
+                    {item.title}
+                    &nbsp;
+                  </h2>
+                  </Link>
+                </header>
+                {/* entry-header */}
+                <div className="entry-summary">
+                  {/* Ico nic One home page thumbnail with custom excerpt */}
+                  <div className="excerpt-thumb">
+                  </div>
+                  <p>Technologies used:{item.tech_used}</p>
+                  <p>Criteria:{item.criterion}</p>
+                </div>
                 <div>
                   {
                     item.project_status.id=="1"?(
-                      this.state.applied_items.includes(item.id) ? <div class="btn btn-secondary">Applied</div>
-                      :<Link to={`/Applicationform/${item.id}`} class="btn btn-primary">Apply</Link>
+                      this.state.applied_items.includes(item.id) ? <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn-dark-nohover">Applied</button>
+                      :<Link to={`/Applicationform/${item.id}`}>
+                      <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Apply</button>
+                      </Link>
                     )
-                    :  <button class="btn btn-warning">Project is Closed</button>
+                    :  <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn-dark-nohover">Closed</button>
                   }
-                  <Link to={`/ProjectDetails/${item.id}`} class="btn btn-info float-right">Details</Link>
+                  <Link to={`/ProjectDetails/${item.id}`} class="float-right">
+                  <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Details</button>
+                  </Link>
                 </div>
-              </div>
-            </div>
+              </article>{/* #post */}
+            </td>
+          </tr>
+        </tbody>
+      </table>
        ))}
+
 
 
 

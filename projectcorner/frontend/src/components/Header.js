@@ -4,9 +4,9 @@ import '../css/Header.css';
 class Header extends React.Component{
   render(){
     return(
-      <div id="header">
-          <h1>{this.props.content}</h1>
-      </div>
+    <section class="cover-image">
+        {this.props.content}
+    </section>
     )
   }
 }
