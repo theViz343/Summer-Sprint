@@ -1,68 +1,46 @@
-
-.file-upload-wrapper {
-  $defaultColor: #4daf7c;
-  $height: 60px;
-
-  position: relative;
-  width: 100%;
-  height: $height;
-
-  &:after {
-    content: attr(data-text);
-    font-size: 18px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-    padding: 10px 15px;
-    display: block;
-    width: calc(100% - 40px);
-    pointer-events: none;
-    z-index: 20;
-    height: $height - 20px;
-    line-height: $height - 20px;
-    color: #999;
-    border-radius: 5px 10px 10px 5px;
-    font-weight: 300;
-  }
-
-  &:before {
-    content: 'Upload';
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: inline-block;
-    height: 60px;
-    background: $defaultColor;
-    color: #fff;
-    font-weight: 700;
-    z-index: 25;
-    font-size: 16px;
-    line-height: $height;
-    padding: 0 15px;
-    text-transform: uppercase;
-    pointer-events: none;
-    border-radius: 0 5px 5px 0;
-  }
-
-  &:hover {
-    &:before {
-      background: darken($defaultColor, 10%);
-    }
-  }
-   input.file-upload {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 99;
-    height: $height - 20px;
-    margin: 0;
-    padding: 0;
-    display: block;
-    cursor: pointer;
-    width: 100%;
-  }
+.file-area {
+	 width: 100%;
+	 position: relative;
+}
+ .file-area input[type=file] {
+	 position: absolute;
+	 width: 100%;
+	 height: 100%;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 opacity: 0;
+	 cursor: pointer;
+}
+ .file-area .file-dummy {
+	 width: 100%;
+	 padding: 30px;
+	 background: rgba(29, 43, 100, 0.2);
+	 border: 2px dashed rgba(29, 43, 100, 0.2);
+	 text-align: center;
+	 transition: background 0.3s ease-in-out;
+}
+ .file-area .file-dummy .success {
+	 display: none;
+}
+ .file-area:hover .file-dummy {
+	 background: rgba(29, 43, 100, 0.1);
+	 border: 2px dashed rgba(29, 43, 100, 0.2);
+}
+ .file-area input[type=file]:focus + .file-dummy {
+	 outline: 2px dashed rgba(255, 255, 255, 0.5);
+	 outline: -webkit-focus-ring-color auto 5px;
+	 border: 2px dashed rgba(29, 43, 100, 0.2);
+}
+ .file-area input[type=file]:valid + .file-dummy {
+	 border-color: rgba(29, 43, 100, 0.2);
+	 border: 2px dashed rgba(29, 43, 100, 0.2);
+	 background-color: rgba(42, 51, 96, 0.2);
+}
+ .file-area input[type=file]:valid + .file-dummy .success {
+	 display: inline-block;
+}
+ .file-area input[type=file]:valid + .file-dummy .default {
+	 display: none;
 }
