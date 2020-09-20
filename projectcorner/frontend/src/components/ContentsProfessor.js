@@ -80,24 +80,57 @@ class ContentsProfessor extends React.Component {
      return(
        <div>
        <Navigationbar />
+       <Header content="Your Projects" />
        <div class="container">
-       <Header content="project" />
-      {isLoaded?null:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
+
+
+        {isLoaded?null:<div class="spin-container"><div class="spinner spinner-grow text-success"></div><h4>Loading...</h4></div>}
        {this.state.items.map(item =>(
-           <div class="card" id="card" >
-              <div class="card-body">
-                <h4 class="card-title" id="card-title">{item.title}</h4>
-                <p class="card-text"><b>Technologies used: </b>{item.tech_used}</p>
-                <div class="card-text"><b>Criterion: </b>{item.criterion}</div>
-                <br/>
-                <Link to={`/ContentsApplicants/${item.id}`} class="btn btn-primary">See Applicants</Link>
-                {item.project_status.id===PROJECT_OPEN?<Link to={`/Closeproject/${item.id}/${PROJECT_CLOSED}`} class="btn btn-warning">Close</Link>:
-                <Link to={`/Closeproject/${item.id}/${PROJECT_OPEN}`} class="btn btn-success">Open{item.project_status.id}</Link>
-                }
-                <Link to={`/Deleteproject/${item.id}`} class="btn btn-danger float-right">Delete</Link>
-              </div>
-            </div>
+           <table className="table table-hover">
+        <tbody>
+          <tr>
+            <td id="linkdata">
+              <article id className="post-137294 post type-post status-publish format-standard hentry category-interview-experiences tag-amazon">
+                <header className="entry-header">
+                <Link to={`/ProjectDetails/${item.id}`} >
+                  <h2 className="entry-title">
+                    {item.title}
+                    &nbsp;
+                  </h2>
+                  </Link>
+                </header>
+                {/* entry-header */}
+                <div className="entry-summary">
+                  {/* Ico nic One home page thumbnail with custom excerpt */}
+                  <div className="excerpt-thumb">
+                  </div>
+                  <p>Technologies used:{item.tech_used}</p>
+                  <p>Criteria:{item.criterion}</p>
+                </div>
+                <div>
+                <Link to={`/ContentsApplicants/${item.id}`}>
+                <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">See Applicants</button>
+                </Link>
+                {item.project_status.id===PROJECT_OPEN?<Link to={`/Closeproject/${item.id}/${PROJECT_CLOSED}`}>
+                <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Close</button>
+                </Link>:
+                <Link to={`/Closeproject/${item.id}/${PROJECT_OPEN}`}>
+                <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Open{item.project_status.id}</button>
+                </Link>}
+                  <Link to={`/Deleteproject/${item.id}`} class="float-right">
+                  <button type="button" id style={{marginTop: '10px!important'}} className="stupo-btn">Delete</button>
+                  </Link>
+                </div>
+              </article>{/* #post */}
+            </td>
+          </tr>
+        </tbody>
+      </table>
        ))}
+
+
+
+
      </div>
      </div>
      )
